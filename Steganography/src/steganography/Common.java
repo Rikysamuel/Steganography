@@ -6,11 +6,21 @@
 
 package steganography;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Iterator;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 
 /**
  *
@@ -22,58 +32,54 @@ public class Common {
         
     }
     
-    public void convertToImage(String dirName, String filename) throws IOException{
+    public void convertToImage(String filename, byte[] bytes) throws IOException{
+//        byte[] bytes = inBytes.getBytes();
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName("png"); 
+ 
+        ImageReader reader = (ImageReader) readers.next();
+        Object source = bis; 
+        ImageInputStream iis = ImageIO.createImageInputStream(source); 
+        reader.setInput(iis, true);
+        ImageReadParam param = reader.getDefaultReadParam();
+ 
+        Image image = reader.read(0, param);
+        //got an image file
+ 
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        //bufferedImage is the RenderedImage to be written
+ 
+        Graphics2D g2 = bufferedImage.createGraphics();
+        g2.drawImage(image, null, null);
+ 
+        File imageFile = new File(filename);
+        ImageIO.write(bufferedImage, "png", imageFile);
+ 
+        System.out.println(imageFile.getPath());
     }
     
-    public String writeToBit(String input, String output) throws FileNotFoundException, IOException{
-        File file = new File("D:\\tes\\Rome.png");
- 
+    public String writeToBit(String filename, int numBlocks) throws FileNotFoundException, IOException{
+        File file = new File(filename);
+        String output="";
         FileInputStream fis = new FileInputStream(file);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         
         byte[] buf = new byte[4096];
         try {
             for (int readNum; (readNum = fis.read(buf)) != -1;) {
-                //Writes to this byte array output stream
-                bos.write(buf, 0, readNum); 
-//                System.out.println("read " + readNum + " bytes,");
+                bos.write(buf, 0, readNum);
             }
         } catch (IOException ex) {
             System.err.println(ex);
         }
  
         byte[] bytes = bos.toByteArray();
-        
-        
-//        
-//        
-//        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-//        Iterator<?> readers = ImageIO.getImageReadersByFormatName("png");
-// 
-//        //ImageIO is a class containing static methods for locating ImageReaders
-//        //and ImageWriters, and performing simple encoding and decoding. 
-// 
-//        ImageReader reader = (ImageReader) readers.next();
-//        Object source = bis; 
-//        ImageInputStream iis = ImageIO.createImageInputStream(source); 
-//        reader.setInput(iis, true);
-//        ImageReadParam param = reader.getDefaultReadParam();
-// 
-//        Image image = reader.read(0, param);
-//        //got an image file
-// 
-//        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
-//        //bufferedImage is the RenderedImage to be written
-// 
-//        Graphics2D g2 = bufferedImage.createGraphics();
-//        g2.drawImage(image, null, null);
-// 
-//        File imageFile = new File("D:\\tes\\NewRome.png");
-//        ImageIO.write(bufferedImage, "png", imageFile);
-// 
-//        System.out.println(imageFile.getPath());
-//        
-//        output = bytes.toString();
+        for(int i=0;i<numBlocks;i++){
+            Byte b = bytes[i];
+            String a = b.toString();
+            output = output + (new BigInteger(a.getBytes()).toString(2));
+        }
+//        return temp;
         return output;
     }
     
@@ -82,7 +88,7 @@ public class Common {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Common c = new Common();
-        System.out.println(c.writeToBit("D:\\tes.jpg", "out.txt"));
+//        c.convertToImage("D:\\tes\\newRome2tes.png",c.writeToBit("D:\\tes\\Rome.png", 3));
         // TODO code application logic here
 //        String tes = "AA";
 //        Character a = 5;
