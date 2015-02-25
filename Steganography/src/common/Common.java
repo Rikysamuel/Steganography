@@ -101,12 +101,12 @@ public class Common {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        Common c = new Common();
-        c.writeToByte("D:\\tes\\untitled.bmp");
-        System.out.println(c.getBits(c.stream[125]));
-        c.stream[125] = c.changeBit(c.stream[125],8,0);
-        System.out.println(c.getBits(c.stream[125]));
-        c.convertToImage("D:\\tes\\newglasses.bmp");
+//        Common c = new Common();
+//        c.writeToByte("D:\\tes\\untitled.bmp");
+//        System.out.println(c.getBits(c.stream[125]));
+//        c.stream[125] = c.changeBit(c.stream[125],8,0);
+//        System.out.println(c.getBits(c.stream[125]));
+//        c.convertToImage("D:\\tes\\newglasses.bmp");
     }
     
 }
