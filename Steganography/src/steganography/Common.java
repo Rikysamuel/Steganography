@@ -28,14 +28,16 @@ import javax.imageio.stream.ImageInputStream;
  */
 public class Common {
     
+    public byte[] stream;
+    private String extention;
+    
     public Common(){
         
     }
     
-    public void convertToImage(String filename, byte[] bytes) throws IOException{
-//        byte[] bytes = inBytes.getBytes();
-        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-        Iterator<?> readers = ImageIO.getImageReadersByFormatName("png"); 
+    public void convertToImage(String filename) throws IOException{
+        ByteArrayInputStream bis = new ByteArrayInputStream(stream);
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName(extention); 
  
         ImageReader reader = (ImageReader) readers.next();
         Object source = bis; 
@@ -44,27 +46,25 @@ public class Common {
         ImageReadParam param = reader.getDefaultReadParam();
  
         Image image = reader.read(0, param);
-        //got an image file
  
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
-        //bufferedImage is the RenderedImage to be written
  
         Graphics2D g2 = bufferedImage.createGraphics();
         g2.drawImage(image, null, null);
  
         File imageFile = new File(filename);
-        ImageIO.write(bufferedImage, "png", imageFile);
+        ImageIO.write(bufferedImage, extention, imageFile);
  
         System.out.println(imageFile.getPath());
     }
     
-    public String writeToBit(String filename, int numBlocks) throws FileNotFoundException, IOException{
+    public void writeToByte(String filename) throws FileNotFoundException, IOException{
         File file = new File(filename);
-        String output="";
+        extention = filename.substring(filename.length()-3);
         FileInputStream fis = new FileInputStream(file);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         
-        byte[] buf = new byte[4096];
+        byte[] buf = new byte[1024];
         try {
             for (int readNum; (readNum = fis.read(buf)) != -1;) {
                 bos.write(buf, 0, readNum);
@@ -74,20 +74,20 @@ public class Common {
         }
  
         byte[] bytes = bos.toByteArray();
-        for(int i=0;i<numBlocks;i++){
-            Byte b = bytes[i];
-            String a = b.toString();
-            output = output + (new BigInteger(a.getBytes()).toString(2));
-        }
-//        return temp;
-        return output;
+        System.out.println(bytes.length);
+        stream = bytes;
     }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        Common c = new Common();
+          Integer a =  Integer.parseInt("10101011", 2);
+          Byte b = a.byteValue();
+          System.out.println(b.toString());
+//        Common c = new Common();
+//        c.writeToByte("D:\\tes\\Rome.png");
+//        c.convertToImage("D:\\tes\\tes.bmp");
 //        c.convertToImage("D:\\tes\\newRome2tes.png",c.writeToBit("D:\\tes\\Rome.png", 3));
         // TODO code application logic here
 //        String tes = "AA";
