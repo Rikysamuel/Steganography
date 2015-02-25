@@ -78,15 +78,32 @@ public class Common {
         stream = bytes;
     }
     
+    public String getBits(byte b){
+        return String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
+    }
+    
+    public byte changeBit(byte b, int pos, int val){
+        if (val==1){
+            b = (byte) (b | (1 << (pos-1)));
+            System.out.println(getBits(b));
+        }
+        if (val==0){
+            b = (byte) (b & ~(1 << (pos-1)));
+            System.out.println(getBits(b));
+        }
+        return b;
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-          Integer a =  Integer.parseInt("10101011", 2);
-          Byte b = a.byteValue();
-          System.out.println(b.toString());
-//        Common c = new Common();
-//        c.writeToByte("D:\\tes\\Rome.png");
+        Common c = new Common();
+        c.writeToByte("D:\\tes\\Rome.png");
+        System.out.println(c.getBits(c.stream[0]));
+        c.changeBit(c.stream[0],4,0);
+        System.out.println(c.getBits(c.stream[0]));
+        
 //        c.convertToImage("D:\\tes\\tes.bmp");
 //        c.convertToImage("D:\\tes\\newRome2tes.png",c.writeToBit("D:\\tes\\Rome.png", 3));
         // TODO code application logic here
