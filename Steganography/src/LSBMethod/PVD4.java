@@ -26,6 +26,7 @@ public class PVD4 {
     }
     
     public void initBlocks(){
+        int len = com.stream.length;
         
     }
 }
