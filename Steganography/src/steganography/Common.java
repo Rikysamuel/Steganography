@@ -32,9 +32,11 @@ public class Common {
     private String extention;
     
     public Common(){
-        
+       stream = null;
+       extention = null;
     }
     
+    // Convert array of byte to a certain Image
     public void convertToImage(String filename) throws IOException{
         ByteArrayInputStream bis = new ByteArrayInputStream(stream);
         Iterator<?> readers = ImageIO.getImageReadersByFormatName(extention); 
@@ -58,6 +60,7 @@ public class Common {
         System.out.println(imageFile.getPath());
     }
     
+    // Convert image to array of bytes
     public void writeToByte(String filename) throws FileNotFoundException, IOException{
         File file = new File(filename);
         extention = filename.substring(filename.length()-3);
@@ -78,18 +81,18 @@ public class Common {
         stream = bytes;
     }
     
+    // return array of bits in a certain byte
     public String getBits(byte b){
         return String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
     }
     
+    // change a bit in a certain of byte
     public byte changeBit(byte b, int pos, int val){
         if (val==1){
             b = (byte) (b | (1 << (pos-1)));
-            System.out.println(getBits(b));
         }
         if (val==0){
             b = (byte) (b & ~(1 << (pos-1)));
-            System.out.println(getBits(b));
         }
         return b;
     }
@@ -99,20 +102,11 @@ public class Common {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Common c = new Common();
-        c.writeToByte("D:\\tes\\Rome.png");
-        System.out.println(c.getBits(c.stream[0]));
-        c.changeBit(c.stream[0],4,0);
-        System.out.println(c.getBits(c.stream[0]));
-        
-//        c.convertToImage("D:\\tes\\tes.bmp");
-//        c.convertToImage("D:\\tes\\newRome2tes.png",c.writeToBit("D:\\tes\\Rome.png", 3));
-        // TODO code application logic here
-//        String tes = "AA";
-//        Character a = 5;
-//        String sosol = new BigInteger(tes.getBytes()).toString(2);
-//        sosol = "00" + sosol;
-////        System.out.println(a.toString());
-//        System.out.println(sosol);
+        c.writeToByte("D:\\tes\\untitled.bmp");
+        System.out.println(c.getBits(c.stream[125]));
+        c.stream[125] = c.changeBit(c.stream[125],8,0);
+        System.out.println(c.getBits(c.stream[125]));
+        c.convertToImage("D:\\tes\\newglasses.bmp");
     }
     
 }
