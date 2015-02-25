@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package steganography;
+package common;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
@@ -99,6 +98,7 @@ public class Common {
     
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Common c = new Common();
