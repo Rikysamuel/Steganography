@@ -22,10 +22,7 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-//<<<<<<< HEAD
-//        Standard s = new Standard();
-//        s.stegonize();
-//=======
+
         Common c = new Common("D:\\tes\\imgtes.jpg");
         c.imageToPix();
         System.out.println(c.greenPix[0][100]);
@@ -42,6 +39,8 @@ public class main {
         c.flush("D:\\tes\\out-tes.jpg");
         System.out.println(c.greenPix[0][100]);
         System.out.println(Integer.toBinaryString(c.greenPix[0][100]));
-//>>>>>>> 72ce60dd2e8c904f352b9f1b4edc76dfd5d0156b
+
+//        Common c = new Common("D:\\tes\\untitled2.bmp");
+//       
     }
 }
