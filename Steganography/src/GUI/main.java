@@ -22,11 +22,11 @@ public class main {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Common c = new Common();
-        c.writeToByte("D:\\tes\\untitled.bmp");
+        c.writeToByte("D:\\Photograph\\libur akhir 2014\\pulang.jpg");
         System.out.println(c.stream.length);
         System.out.println(c.getBits(c.stream[125]));
         c.stream[125] = c.changeBit(c.stream[125],8,0);
         System.out.println(c.getBits(c.stream[125]));
-        c.convertToImage("D:\\tes\\newglasses.bmp");
+        c.convertToImage("D:\\Photograph\\libur akhir 2014\\pulang222.jpg");
     }
 }
