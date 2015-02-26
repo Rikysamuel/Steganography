@@ -9,6 +9,7 @@ package GUI;
 import common.Common;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import LSBMethod.PVD4;
 
 /**
  *
@@ -21,12 +22,14 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        Common c = new Common();
-        c.writeToByte("D:\\tes\\untitled.bmp");
-        System.out.println(c.stream.length);
-        System.out.println(c.getBits(c.stream[125]));
-        c.stream[125] = c.changeBit(c.stream[125],8,0);
-        System.out.println(c.getBits(c.stream[125]));
-        c.convertToImage("D:\\tes\\newglasses.bmp");
+        PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
+//		Common c = new Common();
+//        c.writeToByte("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
+//        System.out.println(c.stream.length);
+//        System.out.println(c.getBits(c.stream[1]));
+//        c.stream[1] = c.changeBit(c.stream[1],8,0);
+//        System.out.println(c.getBits(c.stream[1]));
+//        c.convertToImage("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result.bmp");
+		temp.encrypt();
     }
 }
