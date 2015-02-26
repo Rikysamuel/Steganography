@@ -6,6 +6,7 @@
 
 package GUI;
 
+import LSBMethod.PVD9;
 import LSBMethod.Standard;
 import common.Common;
 import java.io.FileNotFoundException;
@@ -22,23 +23,25 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
+        PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
+        p.processBlock(2010,0);
 
-        Common c = new Common("D:\\tes\\imgtes.jpg");
-        c.imageToPix();
-        System.out.println(c.greenPix[0][100]);
-        System.out.println(c.integerToBit(c.greenPix[0][100]));
-
-        for(int i=0;i< c.height;i++){
-            for(int j=0;j<c.width;j++){
-                c.editPixel(1, i, j, 255);
-                c.editPixel(2, i, j, 255);
-                c.editPixel(3, i, j, 255);
-            }
-        }
-        
-        c.flush("D:\\tes\\out-tes.jpg");
-        System.out.println(c.greenPix[0][100]);
-        System.out.println(Integer.toBinaryString(c.greenPix[0][100]));
+//        Common c = new Common("D:\\tes\\imgtes.jpg");
+//        c.imageToPix();
+//        System.out.println(c.greenPix[0][100]);
+//        System.out.println(c.integerToBit(c.greenPix[0][100]));
+//
+//        for(int i=0;i< c.height;i++){
+//            for(int j=0;j<c.width;j++){
+//                c.editPixel(1, i, j, 255);
+//                c.editPixel(2, i, j, 255);
+//                c.editPixel(3, i, j, 255);
+//            }
+//        }
+//        
+//        c.flush("D:\\tes\\out-tes.jpg");
+//        System.out.println(c.greenPix[0][100]);
+//        System.out.println(Integer.toBinaryString(c.greenPix[0][100]));
 
 //        Common c = new Common("D:\\tes\\untitled2.bmp");
 //       

@@ -43,5 +43,9 @@ public class PixelPos {
         val[1] = val2;
         val[2] = val3;
     }
+
+    public int[] getVal() {
+        return val;
+    }
     
 }
