@@ -32,6 +32,9 @@ public class PVD9 {
         com.imageToPix();
     }
     
-    public void setBlock(int iOffset, int jOffset){
+    public void processBlock(){
+        
     }
+    
+    
 }
