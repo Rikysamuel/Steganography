@@ -32,8 +32,8 @@ public class Common {
     
     private final int[] RGBArray;
     private final BufferedImage image;
-    private int width;
-    private int height;
+    public final int width;
+    public final int height;
     public int[][] alphaPix;
     public int[][] redPix;
     public int[][] greenPix;
@@ -42,6 +42,10 @@ public class Common {
     
     public Common(String filename) throws IOException{
         File file = new File(filename);
+        System.out.println(filename);
+        extention = filename.substring(filename.length()-3);
+        System.out.println(extention);
+        
         image = ImageIO.read(file);
         width = image.getWidth();
         height = image.getHeight();
@@ -53,28 +57,61 @@ public class Common {
         bluePix = new int [height][width];
         
         stream = null;
-        extention = null;
     }
     
     // Convert image to pixel
     public void imageToPix() throws IOException{
-         int i=0;
-         for(int row=0; row<height; row++)
+        int i=0;
+        for(int row=0; row<height; row++)
+        {
+           for(int col=0; col<width; col++)
+           {
+              alphaPix[row][col] = ((RGBArray[i]>>24)&0xff);
+              redPix[row][col] = ((RGBArray[i]>>16)&0xff);
+              greenPix[row][col] = ((RGBArray[i]>>8)&0xff);
+              bluePix[row][col] = (RGBArray[i]&0xff);
+              i++;
+           }
+        }
+    }
+    
+    public int bitToInteger(String binary){
+        return Integer.parseInt(binary,2);
+    }
+    
+    public String integerToBit(int val){
+        return Integer.toBinaryString(val);
+    }
+    
+    // edit array el with a certain value
+    public void editPixel(int TRGB, int i, int j, int val){
+        if (TRGB==0){
+            alphaPix[i][j]=val;
+        }
+        if (TRGB==1){
+            redPix[i][j]=val;
+        }
+        if (TRGB==2){
+            greenPix[i][j]=val;
+        }
+        if (TRGB==3){
+            bluePix[i][j]=val;
+        }
+    }
+    
+    //flush the image
+    public void flush(String outfile) throws IOException{
+        System.out.println(extention);
+        for(int row=0; row<height; row++)
          {
             for(int col=0; col<width; col++)
             {
-               alphaPix[row][col] = ((RGBArray[i]>>24)&0xff);
-               redPix[row][col] = ((RGBArray[i]>>16)&0xff);
-               greenPix[row][col] = ((RGBArray[i]>>8)&0xff);
-               bluePix[row][col] = (RGBArray[i]&0xff);
-               i++;
+               int rgb = (alphaPix[row][col] & 0xff) << 24 | (redPix[row][col] & 0xff) << 16 | (greenPix[row][col] & 0xff) << 8 | (bluePix[row][col] & 0xff);
+               image.setRGB(col, row, rgb);
             }
          }
-         System.out.println(greenPix[0][100]);
-         System.out.println(Integer.toBinaryString(greenPix[0][100]));
+        ImageIO.write(image, extention, new File(outfile));
     }
-    
-//    public void editPixel(int val,)
     
     // Convert array of byte to a certain Image
     public void convertToImage(String filename) throws IOException{
@@ -87,12 +124,12 @@ public class Common {
         reader.setInput(iis, true);
         ImageReadParam param = reader.getDefaultReadParam();
  
-        Image image = reader.read(0, param);
+        Image img = reader.read(0, param);
  
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
  
         Graphics2D g2 = bufferedImage.createGraphics();
-        g2.drawImage(image, null, null);
+        g2.drawImage(img, null, null);
  
         File imageFile = new File(filename);
         ImageIO.write(bufferedImage, extention, imageFile);
@@ -103,7 +140,6 @@ public class Common {
     // Convert image to array of bytes
     public void writeToByte(String filename) throws FileNotFoundException, IOException{
         File file = new File(filename);
-        extention = filename.substring(filename.length()-3);
         FileInputStream fis = new FileInputStream(file);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         
