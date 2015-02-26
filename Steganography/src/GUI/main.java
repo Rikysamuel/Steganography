@@ -23,10 +23,10 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
+//<<<<<<< HEAD
         PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
         p.processBlock(2010,0);
-
-//        Common c = new Common("D:\\tes\\imgtes.jpg");
+//        Common c = new Common("D:\\tes\\untitled2.bmp");
 //        c.imageToPix();
 //        System.out.println(c.greenPix[0][100]);
 //        System.out.println(c.integerToBit(c.greenPix[0][100]));
@@ -42,8 +42,12 @@ public class main {
 //        c.flush("D:\\tes\\out-tes.jpg");
 //        System.out.println(c.greenPix[0][100]);
 //        System.out.println(Integer.toBinaryString(c.greenPix[0][100]));
-
-//        Common c = new Common("D:\\tes\\untitled2.bmp");
-//       
+//        c.writeToByte("D:\\tes\\untitled2.bmp");
+//        System.out.println(c.stream.length);
+//        System.out.println(c.getBits(c.stream[125]));
+//        c.stream[125] = c.changeBit(c.stream[125],8,0);
+//        System.out.println(c.getBits(c.stream[125]));
+//        c.convertToImage("D:\\tes\\newglasses.bmp");
+//>>>>>>> e109c09550f512da00b83a6cb19bd9c90e23cd1c
     }
 }

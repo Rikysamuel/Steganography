@@ -29,7 +29,6 @@ public class Common {
     
     public byte[] stream;
     private String extention;
-    
     private final int[] RGBArray;
     private final BufferedImage image;
     public final int width;
@@ -42,9 +41,7 @@ public class Common {
     
     public Common(String filename) throws IOException{
         File file = new File(filename);
-        System.out.println(filename);
         extention = filename.substring(filename.length()-3);
-        System.out.println(extention);
         
         image = ImageIO.read(file);
         width = image.getWidth();
@@ -57,7 +54,9 @@ public class Common {
         bluePix = new int [height][width];
         
         stream = null;
+       
     }
+    
     
     // Convert image to pixel
     public void imageToPix() throws IOException{
