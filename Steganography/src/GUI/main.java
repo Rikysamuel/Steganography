@@ -21,12 +21,16 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        Common c = new Common();
-        c.writeToByte("D:\\tes\\untitled.bmp");
-        System.out.println(c.stream.length);
-        System.out.println(c.getBits(c.stream[125]));
-        c.stream[125] = c.changeBit(c.stream[125],8,0);
-        System.out.println(c.getBits(c.stream[125]));
-        c.convertToImage("D:\\tes\\newglasses.bmp");
+        Common c = new Common("D:\\tes\\Rome.png");
+        c.imageToPix();
+        c.redPix[0][100] = c.redPix[0][100] + 1;
+        System.out.println(c.redPix[0][100]);
+        System.out.println(Integer.toBinaryString(c.redPix[0][100]));
+//        c.writeToByte("D:\\tes\\untitled.bmp");
+//        System.out.println(c.stream.length);
+//        System.out.println(c.getBits(c.stream[125]));
+//        c.stream[125] = c.changeBit(c.stream[125],8,0);
+//        System.out.println(c.getBits(c.stream[125]));
+//        c.convertToImage("D:\\tes\\newglasses.bmp");
     }
 }
