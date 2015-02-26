@@ -17,7 +17,7 @@ import java.io.IOException;
 public class PVD4 {
     
     private final Pixel[] blocks;
-    private final Common com;
+ //   private final Common com;
 	private int[] y, ya, yb, yc;
 	float D;
 	int T, k;
@@ -25,7 +25,7 @@ public class PVD4 {
     
     public PVD4(String filename) throws IOException{
         blocks = new Pixel[4];
-        com = new Common();
+      // com = new Common();
       //  com.writeToByte(filename);
 		y = new int[4];
 		y[0] = 139;
@@ -36,7 +36,7 @@ public class PVD4 {
     }
     
     public void initBlocks(){
-        int len = com.stream.length;
+     //   int len = com.stream.length;
         
     }
 	
@@ -149,3 +149,4 @@ public class PVD4 {
 	
 	
 }
+
