@@ -116,7 +116,7 @@ public class Common {
     // Convert array of byte to a certain Image
     public void convertToImage(String filename) throws IOException{
         ByteArrayInputStream bis = new ByteArrayInputStream(stream);
-        Iterator<?> readers = ImageIO.getImageReadersByFormatName(extention); 
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName("bmp"); 
  
         ImageReader reader = (ImageReader) readers.next();
         Object source = bis; 
@@ -132,7 +132,7 @@ public class Common {
         g2.drawImage(img, null, null);
  
         File imageFile = new File(filename);
-        ImageIO.write(bufferedImage, extention, imageFile);
+        ImageIO.write(bufferedImage, "bmp", imageFile);
  
         System.out.println(imageFile.getPath());
     }
