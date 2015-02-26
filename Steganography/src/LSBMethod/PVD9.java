@@ -33,40 +33,5 @@ public class PVD9 {
     }
     
     public void setBlock(int iOffset, int jOffset){
-        // row 1
-        p.setI(iOffset);
-        p.setJ(jOffset);
-        b.add(p);
-        p.setI(iOffset);
-        p.setJ(jOffset+1);
-        b.add(p);
-        p.setI(iOffset);
-        p.setJ(jOffset+2);
-        b.add(p);
-        
-        // row 2
-        p.setI(iOffset+1);
-        p.setJ(jOffset);
-        b.add(p);
-        p.setI(iOffset+1);
-        p.setJ(jOffset+1);
-        b.add(p);
-        p.setI(iOffset+1);
-        p.setJ(jOffset+2);
-        b.add(p);
-        
-        //row 3
-        p.setI(iOffset+2);
-        p.setJ(jOffset);
-        b.add(p);
-        p.setI(iOffset+2);
-        p.setJ(jOffset+1);
-        b.add(p);
-        p.setI(iOffset+2);
-        p.setJ(jOffset+2);
-        b.add(p);
-        
-        // add to block
-        blocks.add(b);
     }
 }
