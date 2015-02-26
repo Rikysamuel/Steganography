@@ -14,7 +14,10 @@ public class PixelPos {
     private int i;
     private int j;
     
+    private final int[] val;
+    
     public PixelPos(){
+        val = new int[3];
         i=0;
         j=0;
     }
@@ -33,6 +36,12 @@ public class PixelPos {
 
     public void setJ(int j) {
         this.j = j;
+    }
+    
+    public void setScore(int val1, int val2, int val3){
+        val[0] = val1;
+        val[1] = val2;
+        val[2] = val3;
     }
     
 }
