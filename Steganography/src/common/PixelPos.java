@@ -13,8 +13,8 @@ package common;
 public class PixelPos {
     private int i;
     private int j;
-    
     private final int[] val;
+    
     
     public PixelPos(){
         val = new int[3];
