@@ -25,7 +25,8 @@ public class main {
     public static void main(String[] args) throws FileNotFoundException, IOException {
 //<<<<<<< HEAD
         PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
-        p.processBlock(2010,0);
+        p.hideMsg();
+        p.Flush("D:\\tes\\result.jpg");
 //        Common c = new Common("D:\\tes\\untitled2.bmp");
 //        c.imageToPix();
 //        System.out.println(c.greenPix[0][100]);
