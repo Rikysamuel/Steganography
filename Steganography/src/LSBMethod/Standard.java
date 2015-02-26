@@ -7,6 +7,7 @@
 package LSBMethod;
 
 import common.Common;
+import common.PlainText;
 import java.io.IOException;
 
 /**
@@ -17,12 +18,13 @@ public class Standard {
     private String filenameImg = "D:\\[6]\\IF4020 Kripto\\coret.bmp";
     private String filenamePT = "D:\\[6]\\IF4020 Kripto\\Tubes 1\\tes.txt";
     private Common img;
+    private Common stimg;
     private String plaintext = "";
-    private Common pt;
+    private PlainText pt;
 
     public Standard() throws IOException {
-        this.img = new Common(filenameImg);
-        this.pt = new Common(filenamePT);
+        this.img = new Common("D:\\[6]\\IF4020 Kripto\\coret.bmp");
+        this.pt = new PlainText("D:\\[6]\\IF4020 Kripto\\Tubes 1\\tes.txt");
     }
     
     public void setPlaintext (String s){
@@ -39,7 +41,7 @@ public class Standard {
     
     public void printByteImg () throws IOException{
        img.writeToByte(this.filenameImg);
-       pt.writeToByte(filenamePT);
+//       pt.writeToByte(filenamePT);
     }
     
     public void stegonize () throws IOException{
@@ -50,13 +52,13 @@ public class Standard {
 //        }
         
         int counter = this.img.stream.length;
-        int counterPT = this.pt.stream.length;
+        int counterPT = this.pt.streamPT.length;
         byte temp;
         String ptemp="";
         if (counterPT < counter){
             //ubah plaintext ke string of bit 
             for (int i = 0 ; i < counterPT ; i++){
-                ptemp += this.pt.getBits(this.pt.stream[i]);
+                ptemp += this.pt.getBits(this.pt.streamPT[i]);
             }
             
             for (int i = 0; i < ptemp.length(); i++){
@@ -74,5 +76,15 @@ public class Standard {
 //        }
     }
     
+    public void extract() throws IOException{
+        this.stimg = new Common("hasil.bmp");
+        this.stimg.writeToByte("hasil.bmp");
+        int count = this.stimg.stream.length;
+        String ext = "";
+        for (int i =0 ; i < count; i++){
+            ext += stimg.getBits(stimg.stream[i]).charAt(7);
+        }
+        System.out.println(ext);
+    }
     
 }
