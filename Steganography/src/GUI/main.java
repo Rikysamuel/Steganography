@@ -21,6 +21,7 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
+//<<<<<<< HEAD
         Common c = new Common("D:\\tes\\Rome.png");
         c.imageToPix();
         c.redPix[0][100] = c.redPix[0][100] + 1;
