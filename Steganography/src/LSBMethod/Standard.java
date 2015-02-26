@@ -16,9 +16,14 @@ import java.io.IOException;
 public class Standard {
     private String filenameImg = "D:\\[6]\\IF4020 Kripto\\coret.bmp";
     private String filenamePT = "D:\\[6]\\IF4020 Kripto\\Tubes 1\\tes.txt";
-    private Common img = new Common();
+    private Common img;
     private String plaintext = "";
-    private Common pt = new Common();
+    private Common pt;
+
+    public Standard() throws IOException {
+        this.img = new Common(filenameImg);
+        this.pt = new Common(filenamePT);
+    }
     
     public void setPlaintext (String s){
         this.plaintext = s;
