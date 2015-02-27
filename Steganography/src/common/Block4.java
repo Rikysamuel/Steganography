@@ -36,7 +36,14 @@ public class Block4 {
     }
 	
 	/** DECRPYT **/
-	
+	public String decrypt(int color, int keyLower, int keyHigher, int threshold,String result){
+		initBlock(color,keyLower,keyHigher,threshold);
+		
+		for(int i=0;i<=3;i++)
+			result += com.integerToBit(y[i]).substring(8-k);
+		
+		return result;
+	}
 	
 	/** ENCRYPT **/
 	public void initY(int val, int pos){

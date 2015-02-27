@@ -22,7 +22,7 @@ public class PVD4 {
 	int T, kLower, kHigher;
 	String plainteks;
     
-    public PVD4(String picturename, String plaintext) throws IOException{
+    public PVD4(String picturename) throws IOException{
 		System.out.println("--CONSTRUCT PVD4--");
 		
 		blocks = new PixelPos[4];	
@@ -31,18 +31,17 @@ public class PVD4 {
 		}
 		blockProcess = new Block4(picturename);
 		com = new Common(picturename);
-		plainteks = plaintext;
-		
 		com.imageToPix();
 		
 		T = 5;
 		kLower = 2;
-		kHigher = 5;
+		kHigher = 3;
     }
 	
 	
     
-    public void encrypt() throws IOException{
+    public void process(String plaintext, String process) throws IOException{
+		plainteks = plaintext;
 		int i = 0;
 		boolean outOfBound = false;
 		
@@ -60,17 +59,20 @@ public class PVD4 {
 				blocks[3].setI(i+1);
 				blocks[3].setJ(j+1);
 				
-				
-				
 				for(int color=1;color<=3;color++){
 					// initialization integer Y per Block4
 					for(int k=0;k<=3;k++){
 						blockProcess.initY(k,com.getIntegerPixel(color, blocks[k].getI(), blocks[k].getJ()));
 					}
 					
-					// processing hide message
-					plainteks = blockProcess.encrypt(color,kLower,kHigher,T,plainteks);
-					com.editPixel(color, blocks[i].getI(), blocks[i].getJ(), blockProcess.getYfinal(i));
+					if(process.equals("encrypt")){
+						// processing hide message
+						plainteks = blockProcess.encrypt(color,kLower,kHigher,T,plainteks);
+						com.editPixel(color, blocks[i].getI(), blocks[i].getJ(), blockProcess.getYfinal(i));
+					} else /*decrypt*/ {
+						plainteks = blockProcess.decrypt(color,kLower,kHigher,T,plainteks);
+					}
+					
 				}
 			
 				j = j + 2;

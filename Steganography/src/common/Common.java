@@ -188,5 +188,20 @@ public class Common {
         }
 		return result;
     }
+	
+	// change binary string to text
+	public String bitToText(String bit){
+		String result = "";
+		int ascii;
+		String bitProcess;
+
+		while(bit.length()>0){
+			bitProcess = bit.substring(0,8);
+			ascii = bitToInteger(bitProcess);
+			result += (char)ascii;
+			bit = bit.substring(8);
+		}
+		return result;
+	} 
     
 }

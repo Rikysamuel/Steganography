@@ -29,17 +29,20 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\plaintext.txt");
-	//	Common com = new Common("");
-		plainteks.setStreamPT();
-		System.out.println(plainteks.ptByte);
+//        PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\plaintext.txt");
+		Common com = new Common("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
+//		plainteks.setStreamPT();
+//		System.out.println(plainteks.ptByte);
 		
-		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp",plainteks.ptByte);
-	//	temp.encrypt();
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
+	//	temp.process(plainteks.ptByte,encrypt);
 		
 //		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
 //        p.hideMsg();
 //        p.Flush("D:\\tes\\result.jpg");
-
+		
+		PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+		System.out.println(plainteks.ptByte);
+		System.out.println(com.bitToText(plainteks.ptByte));
     }
 }
