@@ -8,6 +8,7 @@ package LSBMethod;
 
 import common.Common;
 import common.Block4;
+import common.PixelPos;
 import java.io.IOException;
 
 /**
@@ -15,39 +16,73 @@ import java.io.IOException;
  * @author Rikysamuel
  */
 public class PVD4 {
+	public PixelPos[] blocks;
 	private final Common com;
     Block4 blockProcess;
-	int T, k;
+	int T, kLower, kHigher;
 	String plainteks;
     
-    public PVD4(String filename) throws IOException{
-		blockProcess = new Block4();
-		com = new Common("tes");
-		plainteks = com.getPlaintextFromFile("tes");
+    public PVD4(String picturename, String plaintext) throws IOException{
+		System.out.println("--CONSTRUCT PVD4--");
+		
+		blocks = new PixelPos[4];	
+		for(int i=0;i<=3;i++){
+			blocks[i] = new PixelPos();
+		}
+		blockProcess = new Block4(picturename);
+		com = new Common(picturename);
+		plainteks = plaintext;
+		
+		com.imageToPix();
+		
+		T = 5;
+		kLower = 2;
+		kHigher = 5;
     }
+	
+	
     
     public void encrypt() throws IOException{
 		int i = 0;
-		while(i <= com.height){
+		boolean outOfBound = false;
+		
+		while(i <= com.height && !outOfBound){
 			int j = 0;
-			while(j <= com.width){
-				blockProcess.blocks[0].setI(i);
-				blockProcess.blocks[0].setJ(j);
-				blockProcess.blocks[1].setI(i+1);
-				blockProcess.blocks[1].setJ(j);
-				blockProcess.blocks[2].setI(i);
-				blockProcess.blocks[2].setJ(j+1);
-				blockProcess.blocks[3].setI(i+1);
-				blockProcess.blocks[3].setJ(j+1);
+			while(j <= com.width && !outOfBound){
 				
-				for(int color=1;color<=3;color++)
-					blockProcess.encrypt(color);
+				// initialization PixelPos per Block4
+				blocks[0].setI(i);
+				blocks[0].setJ(j);
+				blocks[1].setI(i+1);
+				blocks[1].setJ(j);
+				blocks[2].setI(i);
+				blocks[2].setJ(j+1);
+				blocks[3].setI(i+1);
+				blocks[3].setJ(j+1);
 				
+				
+				
+				for(int color=1;color<=3;color++){
+					// initialization integer Y per Block4
+					for(int k=0;k<=3;k++){
+						blockProcess.initY(k,com.getIntegerPixel(color, blocks[k].getI(), blocks[k].getJ()));
+					}
+					
+					// processing hide message
+					plainteks = blockProcess.encrypt(color,kLower,kHigher,T,plainteks);
+					com.editPixel(color, blocks[i].getI(), blocks[i].getJ(), blockProcess.getYfinal(i));
+				}
+			
 				j = j + 2;
+				if(j>com.height)
+					outOfBound = true;
 			}
 			i = i + 2;
+			if(i > com.height)
+				outOfBound = true;
+			else
+				outOfBound = false;
 		}
     }
-	
 }
 

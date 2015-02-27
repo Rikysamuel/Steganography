@@ -14,91 +14,52 @@ import static java.lang.Math.pow;
  * @author Cilvia
  */
 public class Block4 {
-	public final PixelPos[] blocks;
-    private final Common com;
-	private int[] y, ya, yb, yc;
+	private final Common com;
+	public int[] y;
+	private int[] ya, yb, yc;
 	float D;
-	int T, k, TRGB;
+	int T, k;
 	String level, plainteks;
     
-    public Block4() throws IOException{
-        blocks = new PixelPos[4];	
-		for(int i=0;i<=3;i++){
-			blocks[i] = new PixelPos();
-		}
-		
-//		blocks[0].setI(0);
-//		blocks[0].setJ(0);
-//		blocks[1].setI(0);
-//		blocks[1].setJ(1);
-//		blocks[2].setI(1);
-//		blocks[2].setJ(0);
-//		blocks[3].setI(1);
-//		blocks[3].setJ(1);
-		
-       com = new Common("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
+    public Block4(String tempfile) throws IOException{
+		com = new Common(tempfile);
 		y = new int[4];
-		y[0] = 139;
-		y[1] = 146;
-		y[2] = 137;
-		y[3] = 142;
-		T=5;
-		plainteks = "000111111101";
     }
     
-    public void initBlocks(){
-     //   int len = com.stream.length;
-        
-    }
-
-	/**ENCRYPT**/
-	
-	private void setTRGB(int color){
-		TRGB = color;
-	}
-	
-	public void encrypt(int color){
-		System.out.println(Integer.toBinaryString(y[0]));
-		System.out.println(Integer.toBinaryString(y[1]));
-		System.out.println(Integer.toBinaryString(y[2]));
-		System.out.println(Integer.toBinaryString(y[3]));
-		
-		setTRGB(color);
+    public void initBlock(int color, int keyLower, int keyHigher, int threshold){
+		T = threshold;
 		// gimana nentuin T
 		setLevel();
 		// gimana nentuin klower khigher
-		setK(2,3);
+		setK(keyLower,keyHigher);
+        
+    }
+	
+	/** DECRPYT **/
+	
+	
+	/** ENCRYPT **/
+	public void initY(int val, int pos){
+		y[pos] = val;
+	}
+	
+	public int getYfinal(int pos){
+		return yc[pos];
+	}
+	
+	public String encrypt(int color, int keyLower, int keyHigher, int threshold,String plain){
+		plainteks = plain;
+		initBlock(color,keyLower,keyHigher,threshold);
+		
 		if(!isErrorBlock(y)){
 			commonLSBSubstitution();			
-
-//			System.out.println(ya[0]);
-//			System.out.println(ya[1]);
-//			System.out.println(ya[2]);
-//			System.out.println(ya[3]);
-			
 			modifiedLSBSubstitution();
-			
-//			System.out.println(yb[0]);
-//			System.out.println(yb[1]);
-//			System.out.println(yb[2]);
-//			System.out.println(yb[3]);
-			
 			readjustingProcedure();
-			
-//			System.out.println(yc[0]);
-//			System.out.println(yc[1]);
-//			System.out.println(yc[2]);
-//			System.out.println(yc[3]);
-			
-			finishing();
 		}
-		
+		return plainteks;
 	}
 
-	private void finishing(){
-		for(int i=0;i<=3;i++)
-			com.editPixel(TRGB, blocks[i].getI(), blocks[i].getJ(), yc[i]);
-	}
+	
 	
 	private void readjustingProcedure(){
 		System.out.println("--READJUSTING--");
@@ -187,6 +148,7 @@ public class Block4 {
 		}
 	}
 	
+	// must done after setLevel
 	private void setK(int keyLower, int keyHigher){
 		if (level.equals("lower"))
 			k = keyLower;
@@ -239,11 +201,5 @@ public class Block4 {
 		else 
 			return "higher";
 	}
-	
-	
-	
-	
-	
-	
 	
 }

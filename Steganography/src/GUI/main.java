@@ -15,6 +15,7 @@ import LSBMethod.PVD9;
 import LSBMethod.Standard;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import common.PlainText;
 
 
 /**
@@ -28,9 +29,14 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
-		temp.encrypt();
-
+        PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\plaintext.txt");
+	//	Common com = new Common("");
+		plainteks.setStreamPT();
+		System.out.println(plainteks.ptByte);
+		
+		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp",plainteks.ptByte);
+	//	temp.encrypt();
+		
 //		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
 //        p.hideMsg();
 //        p.Flush("D:\\tes\\result.jpg");
