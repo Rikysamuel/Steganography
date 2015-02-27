@@ -18,7 +18,7 @@ public class PixelPos {
     
     public PixelPos(){
         val = new int[3];
-        i=0;
+		i=0;
         j=0;
     }
 
@@ -42,6 +42,10 @@ public class PixelPos {
         val[0] = val1;
         val[1] = val2;
         val[2] = val3;
+    }
+
+    public int[] getVal() {
+        return val;
     }
     
 }
