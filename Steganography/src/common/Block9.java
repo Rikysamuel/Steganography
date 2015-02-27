@@ -36,6 +36,7 @@ public class Block9 {
     
     // create a block, set xmin-red, set xmin-green, set xmin-blue
     public void createBlock(int iOffset, int jOffset, int[][] mat1, int[][] mat2, int[][] mat3){
+        int jstart = jOffset;
         xmin[0] = 999;
         xmin[1] = 999;
         xmin[2] = 999;
@@ -46,52 +47,53 @@ public class Block9 {
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
-        System.out.println("val: " + mat1[iOffset][jOffset]);
+//        System.out.println("val: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
-        System.out.println("val: " + mat2[iOffset][jOffset]);
+//        System.out.println("val: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
-        System.out.println("val: " + mat3[iOffset][jOffset]);
+//        System.out.println("val: " + mat3[iOffset][jOffset]);
 //        block.add(p.get(0));
         jOffset++;
-        p.get(1).setI(iOffset);
+        p.get(1).setI(iOffset); //col 2
         p.get(1).setJ(jOffset);
         p.get(1).setScore(mat1[iOffset][jOffset], mat2[iOffset][jOffset], mat3[iOffset][jOffset]);
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
-        System.out.println("val: " + mat1[iOffset][jOffset]);
+//        System.out.println("val: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
-        System.out.println("val: " + mat2[iOffset][jOffset]);
+//        System.out.println("val: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
-        System.out.println("val: " + mat3[iOffset][jOffset]);
+//        System.out.println("val: " + mat3[iOffset][jOffset]);
 //        block.add(p);
         jOffset++;
-        p.get(2).setI(iOffset);
+        p.get(2).setI(iOffset); // col 3
         p.get(2).setJ(jOffset);
         p.get(2).setScore(mat1[iOffset][jOffset], mat2[iOffset][jOffset], mat3[iOffset][jOffset]);
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
-        System.out.println("val: " + mat1[iOffset][jOffset]);
+//        System.out.println("val: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
-        System.out.println("val: " + mat2[iOffset][jOffset]);
+//        System.out.println("val: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
-        System.out.println("val: " + mat3[iOffset][jOffset]);
+//        System.out.println("val: " + mat3[iOffset][jOffset]);
 //        block.add(p);
         
         // row 2
+        jOffset = jstart;
         iOffset++;
         p.get(3).setI(iOffset);
         p.get(3).setJ(jOffset);
@@ -99,12 +101,15 @@ public class Block9 {
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat3[iOffset][jOffset]);
 //        block.add(p);
         jOffset++;
         p.get(4).setI(iOffset);
@@ -113,12 +118,15 @@ public class Block9 {
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat3[iOffset][jOffset]);
 //        block.add(p);
         jOffset++;
         p.get(5).setI(iOffset);
@@ -127,15 +135,19 @@ public class Block9 {
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
+//        System.out.println("valG: " + mat3[iOffset][jOffset]);
 //        block.add(p);
         
         //row 3
+        jOffset = jstart;
         iOffset++;
         p.get(6).setI(iOffset);
         p.get(6).setJ(jOffset);
@@ -143,12 +155,15 @@ public class Block9 {
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat3[iOffset][jOffset]);
 //        block.add(p);
         jOffset++;
         p.get(7).setI(iOffset);
@@ -157,12 +172,15 @@ public class Block9 {
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat3[iOffset][jOffset]);
 //        block.add(p);
         jOffset++;
         p.get(8).setI(iOffset);
@@ -171,12 +189,15 @@ public class Block9 {
         if (mat1[iOffset][jOffset]<xmin[0]){
             xmin[0] = mat1[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat1[iOffset][jOffset]);
         if (mat2[iOffset][jOffset]<xmin[1]){
             xmin[1] = mat2[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat2[iOffset][jOffset]);
         if (mat3[iOffset][jOffset]<xmin[2]){
             xmin[2] = mat3[iOffset][jOffset];
         }
+//        System.out.println("valB: " + mat3[iOffset][jOffset]);
 //        block.add(p);
     }
 
@@ -197,20 +218,20 @@ public class Block9 {
             }
         }
         
-        System.out.println("xmin[0]: " + xmin[0]);
-        System.out.println("xmin[1]: " + xmin[1]);
-        System.out.println("xmin[2]: " + xmin[2]);
-        
-        System.out.println("tmin[0]: " + tmin[0]);
-        System.out.println("tmin[1]: " + tmin[1]);
-        System.out.println("tmin[2]: " + tmin[2]);
-        
+//        System.out.println("xmin[0]: " + xmin[0]);
+//        System.out.println("xmin[1]: " + xmin[1]);
+//        System.out.println("xmin[2]: " + xmin[2]);
+//        
+//        System.out.println("tmin[0]: " + tmin[0]);
+//        System.out.println("tmin[1]: " + tmin[1]);
+//        System.out.println("tmin[2]: " + tmin[2]);
+//        
         dmin[0] = tmin[0]/8;    // d-red
-        System.out.println("dmin[0]: " + dmin[0]);
+//        System.out.println("dmin[0]: " + dmin[0]);
         dmin[1] = tmin[1]/8;    // d-green
-        System.out.println("dmin[1]: " + dmin[1]);
+//        System.out.println("dmin[1]: " + dmin[1]);
         dmin[2] = tmin[2]/8;    // d-blue
-        System.out.println("dmin[2]: " + dmin[2]);
+//        System.out.println("dmin[2]: " + dmin[2]);
     }
     
     // get LSB Rule

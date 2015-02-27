@@ -26,6 +26,7 @@ public class main {
 //<<<<<<< HEAD
         PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
         p.hideMsg();
+//        p.processBlock(0, 5178);
         p.Flush("D:\\tes\\result.jpg");
 //        Common c = new Common("D:\\tes\\untitled2.bmp");
 //        c.imageToPix();

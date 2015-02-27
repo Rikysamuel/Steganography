@@ -87,22 +87,21 @@ public class PVD9 {
             }
             if (rule[0]==3){
                 temp[6] = 0; temp[7]=1;
-                temp[5] = text.charAt(pointer);
+                temp[5] = text.charAt(pointer); pointer++;
             }
             if (rule[0]==4){
                 temp[6] = 1; temp[7]=0;
-                temp[5] = text.charAt(pointer);
-                temp[4] = text.charAt(pointer);
+                temp[5] = text.charAt(pointer); pointer++;
+                temp[4] = text.charAt(pointer); pointer++;
             }
             if (rule[0]==5){
                 temp[6] = 1; temp[7]=1;
-                temp[5-it] = text.charAt(pointer);
-                temp[4-it] = text.charAt(pointer);
-                temp[3-it] = text.charAt(pointer);
+                temp[5-it] = text.charAt(pointer); pointer++;
+                temp[4-it] = text.charAt(pointer); pointer++;
+                temp[3-it] = text.charAt(pointer); pointer++;
                 
             }
             com.editPixel(1, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
-            it++; pointer++;
         }
         // flag to green
         it = 0;
@@ -113,25 +112,23 @@ public class PVD9 {
             }
             if (rule[1]==3){
                 temp[6] = 0; temp[7]=1;
-                temp[5] = text.charAt(pointer);
+                temp[5] = text.charAt(pointer); pointer++;
             }
             if (rule[1]==4){
                 temp[6] = 1; temp[7]=0;
-                temp[5] = text.charAt(pointer);
-                temp[4] = text.charAt(pointer);
+                temp[5] = text.charAt(pointer); pointer++;
+                temp[4] = text.charAt(pointer); pointer++;
             }
             if (rule[1]==5){
                 temp[6] = 1; temp[7]=1;
-                temp[5-it] = text.charAt(pointer);
-                temp[4-it] = text.charAt(pointer);
-                temp[3-it] = text.charAt(pointer);
+                temp[5-it] = text.charAt(pointer); pointer++;
+                temp[4-it] = text.charAt(pointer); pointer++;
+                temp[3-it] = text.charAt(pointer); pointer++;
                 
             }
             com.editPixel(1, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
-            it++; pointer++;
         }
         // flag to blue
-        it = 0;
         while (pointer<text.length() && it < rule[2]){
             temp = com.integerToBit(com.redPix[iOffset][jOffset]).toCharArray();
             if (rule[2]==2){
@@ -139,38 +136,41 @@ public class PVD9 {
             }
             if (rule[2]==3){
                 temp[6] = 0; temp[7]=1;
-                temp[5] = text.charAt(pointer);
+                temp[5] = text.charAt(pointer); pointer++;
             }
             if (rule[2]==4){
                 temp[6] = 1; temp[7]=0;
-                temp[5] = text.charAt(pointer);
-                temp[4] = text.charAt(pointer);
+                temp[5] = text.charAt(pointer); pointer++;
+                temp[4] = text.charAt(pointer); pointer++;
             }
             if (rule[2]==5){
                 temp[6] = 1; temp[7]=1;
-                temp[5-it] = text.charAt(pointer);
-                temp[4-it] = text.charAt(pointer);
-                temp[3-it] = text.charAt(pointer);
+                temp[5-it] = text.charAt(pointer); pointer++;
+                temp[4-it] = text.charAt(pointer); pointer++;
+                temp[3-it] = text.charAt(pointer); pointer++;
                 
             }
             com.editPixel(1, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
-            it++; pointer++;
         }
+        
+//        System.out.println("berakhir");
     }
     
     public void hideMsg(){
-//        int i=0; int j=0;
-//        while(i<com.height){
-//            processBlock(i,j);
-//            j=j+3;
-//            if(j>=5184){
-//                break;
-//            }
-//            if(j>=com.width){
-//                j=0;
-//                i=i+3;
-//            }
-//        }
+//        System.out.println(com.alphaPix[0].length+com.redPix[0].length+com.greenPix[0].length+com.bluePix[0].length);
+        System.out.println(com.height);
+        System.out.println(com.width);
+        int i=0; int j=0;
+        while(i<com.height-1){
+            if(j<com.width-1){
+                System.out.println("i:" + i + " and j: " + j);
+                processBlock(i,j);
+                j=j+3;
+            } else{
+                j=0;
+                i=i+3;
+            }
+        }
     }
     
     public void Flush(String outfile) throws IOException{
