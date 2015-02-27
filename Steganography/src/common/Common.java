@@ -29,7 +29,6 @@ public class Common {
     
     public byte[] stream;
     private String extention;
-    
     private final int[] RGBArray;
     private final BufferedImage image;
     public final int width;
@@ -42,9 +41,7 @@ public class Common {
     
     public Common(String filename) throws IOException{
         File file = new File(filename);
-        System.out.println(filename);
         extention = filename.substring(filename.length()-3);
-        System.out.println(extention);
         
         image = ImageIO.read(file);
         width = image.getWidth();
@@ -57,7 +54,9 @@ public class Common {
         bluePix = new int [height][width];
         
         stream = null;
+       
     }
+    
     
     // Convert image to pixel
     public void imageToPix() throws IOException{
@@ -116,7 +115,7 @@ public class Common {
     // Convert array of byte to a certain Image
     public void convertToImage(String filename) throws IOException{
         ByteArrayInputStream bis = new ByteArrayInputStream(stream);
-        Iterator<?> readers = ImageIO.getImageReadersByFormatName(extention); 
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName("bmp"); 
  
         ImageReader reader = (ImageReader) readers.next();
         Object source = bis; 
@@ -132,7 +131,7 @@ public class Common {
         g2.drawImage(img, null, null);
  
         File imageFile = new File(filename);
-        ImageIO.write(bufferedImage, extention, imageFile);
+        ImageIO.write(bufferedImage, "bmp", imageFile);
  
         System.out.println(imageFile.getPath());
     }
