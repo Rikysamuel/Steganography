@@ -15,16 +15,21 @@ import java.io.IOException;
  * @author Rikysamuel, Hayyu LH
  */
 public class Standard {
-    private String filenameImg = "D:\\[6]\\IF4020 Kripto\\coret.bmp";
-    private String filenamePT = "D:\\[6]\\IF4020 Kripto\\Tubes 1\\tes.txt";
-    private Common img;
+    private String filenameImg;
+    private String filenamePT;
+    private String filenameSImg;
+    public Common img;
     private Common stimg;
+    public PlainText pt;
     private String plaintext = "";
-    private PlainText pt;
+    
 
-    public Standard() throws IOException {
-        this.img = new Common("D:\\[6]\\IF4020 Kripto\\coret.bmp");
-        this.pt = new PlainText("D:\\[6]\\IF4020 Kripto\\Tubes 1\\tes.txt");
+    public Standard(String fimg, String fpt) throws IOException {
+        this.filenameImg = fimg;
+        this.filenamePT = fpt;
+        this.img = new Common(filenameImg);
+        img.writeToByte(filenameImg);
+        this.pt = new PlainText(filenamePT);
     }
     
     public void setPlaintext (String s){
@@ -38,19 +43,9 @@ public class Standard {
     public void setFilenameImg (String filein){
         this.filenameImg = filein;
     }
-    
-    public void printByteImg () throws IOException{
-       img.writeToByte(this.filenameImg);
-//       pt.writeToByte(filenamePT);
-    }
-    
+   
     public void stegonize () throws IOException{
-        printByteImg();
-//        for (int i=0;i<5;i++){
-//            String ss = this.img.getBits(this.img.stream[i]);
-//            System.out.println(ss);
-//        }
-        
+        img.writeToByte(filenameImg);
         int counter = this.img.stream.length;
         int counterPT = this.pt.streamPT.length;
         byte temp;
@@ -68,12 +63,7 @@ public class Standard {
                 System.out.println("ubah: "+img.getBits(img.stream[i]));
             }
         }
-        this.img.convertToImage("hasil.bmp");
-//        System.out.println(this.pt.getBits(this.pt.stream[0]));
-//        for (int i=0;i<5;i++){
-//            String st = this.img.getBits(this.img.stream[i]);
-//            System.out.println(st);
-//        }
+        this.img.convertToImage(filenameSImg);
     }
     
     public void extract() throws IOException{

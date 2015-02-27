@@ -9,6 +9,7 @@ package GUI;
 import LSBMethod.PVD9;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import common.PlainText;
 
 
 /**

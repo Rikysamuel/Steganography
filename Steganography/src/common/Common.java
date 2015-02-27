@@ -40,21 +40,20 @@ public class Common {
     
     
     public Common(String filename) throws IOException{
-        File file = new File(filename);
-        extention = filename.substring(filename.length()-3);
-        
-        image = ImageIO.read(file);
-        width = image.getWidth();
-        height = image.getHeight();
-        RGBArray = image.getRGB(0,0,width,height,null,0,width);
-        
-        alphaPix = new int [height][width];
-        redPix = new int [height][width];
-        greenPix = new int [height][width];
-        bluePix = new int [height][width];
-        
-        stream = null;
-       
+			File file = new File(filename);
+			extention = filename.substring(filename.length()-3);
+
+			image = ImageIO.read(file);
+			width = image.getWidth();
+			height = image.getHeight();
+			RGBArray = image.getRGB(0,0,width,height,null,0,width);
+
+			alphaPix = new int [height][width];
+			redPix = new int [height][width];
+			greenPix = new int [height][width];
+			bluePix = new int [height][width];
+
+			stream = null;
     }
     
     
@@ -172,9 +171,37 @@ public class Common {
         return b;
     }
 	
-	// get plainteks from file
-	public String getPlaintextFromFile(String filename){
-		return "";
-	}
+	// return value of RGB in a certain place
+    public int getIntegerPixel(int TRGB, int i, int j){
+        int result = 0;
+		if (TRGB==0){
+            result = alphaPix[i][j];
+        }
+        if (TRGB==1){
+            result = redPix[i][j];
+        }
+        if (TRGB==2){
+            result = greenPix[i][j];
+        }
+        if (TRGB==3){
+            result = bluePix[i][j];
+        }
+		return result;
+    }
+	
+	// change binary string to text
+	public String bitToText(String bit){
+		String result = "";
+		int ascii;
+		String bitProcess;
+
+		while(bit.length()>0){
+			bitProcess = bit.substring(0,8);
+			ascii = bitToInteger(bitProcess);
+			result += (char)ascii;
+			bit = bit.substring(8);
+		}
+		return result;
+	} 
     
 }
