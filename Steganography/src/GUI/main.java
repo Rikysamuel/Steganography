@@ -24,8 +24,8 @@ public class main {
     public static void main(String[] args) throws FileNotFoundException, IOException {
 //<<<<<<< HEAD
 //<<<<<<< HEAD
-        Standard s = new Standard();
-        s.stegonize();
+//        Standard s = new Standard();
+//        s.stegonize();
 //=======
 //        Common c = new Common("D:\\tes\\imgtes.jpg");
 //        c.imageToPix();
