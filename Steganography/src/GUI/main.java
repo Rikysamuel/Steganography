@@ -7,9 +7,11 @@
 package GUI;
 
 import common.Common;
+import common.Block4;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import LSBMethod.PVD4;
+import static java.lang.Math.pow;
 
 /**
  *
@@ -30,8 +32,9 @@ public class main {
 //        c.stream[1] = c.changeBit(c.stream[1],8,0);
 //        System.out.println(c.getBits(c.stream[1]));
 //        c.convertToImage("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result.bmp");
+//		Block4 temp = new Block4();
 		temp.encrypt();
-		
+		//System.out.println(pow(2,3));
 //		Common c = new Common("D:\\tes\\imgtes.jpg");
 //        c.imageToPix();
 //        System.out.println(c.greenPix[0][100]);
@@ -50,4 +53,3 @@ public class main {
 //        System.out.println(Integer.toBinaryString(c.greenPix[0][100]));
     }
 }
-
