@@ -6,11 +6,16 @@
 
 package GUI;
 
-import LSBMethod.PVD9;
-import LSBMethod.Standard;
 import common.Common;
+import common.Block4;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import LSBMethod.PVD4;
+import LSBMethod.PVD9;
+import LSBMethod.Standard;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 /**
  *
@@ -23,33 +28,9 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-//<<<<<<< HEAD
         PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
         p.hideMsg();
 //        p.processBlock(0, 5178);
         p.Flush("D:\\tes\\result.jpg");
-//        Common c = new Common("D:\\tes\\untitled2.bmp");
-//        c.imageToPix();
-//        System.out.println(c.greenPix[0][100]);
-//        System.out.println(c.integerToBit(c.greenPix[0][100]));
-//
-//        for(int i=0;i< c.height;i++){
-//            for(int j=0;j<c.width;j++){
-//                c.editPixel(1, i, j, 255);
-//                c.editPixel(2, i, j, 255);
-//                c.editPixel(3, i, j, 255);
-//            }
-//        }
-//        
-//        c.flush("D:\\tes\\out-tes.jpg");
-//        System.out.println(c.greenPix[0][100]);
-//        System.out.println(Integer.toBinaryString(c.greenPix[0][100]));
-//        c.writeToByte("D:\\tes\\untitled2.bmp");
-//        System.out.println(c.stream.length);
-//        System.out.println(c.getBits(c.stream[125]));
-//        c.stream[125] = c.changeBit(c.stream[125],8,0);
-//        System.out.println(c.getBits(c.stream[125]));
-//        c.convertToImage("D:\\tes\\newglasses.bmp");
-//>>>>>>> e109c09550f512da00b83a6cb19bd9c90e23cd1c
     }
 }

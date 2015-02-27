@@ -18,7 +18,7 @@ public class PixelPos {
     
     public PixelPos(){
         val = new int[3];
-        i=0;
+		i=0;
         j=0;
     }
 

@@ -171,5 +171,10 @@ public class Common {
         }
         return b;
     }
+	
+	// get plainteks from file
+	public String getPlaintextFromFile(String filename){
+		return "";
+	}
     
 }

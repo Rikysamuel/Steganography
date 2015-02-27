@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/GUI/main.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/LSBMethod/PVD4.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/common/Block4.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/LSBMethod/Standard.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/common/Common.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/LSBMethod/PVD9.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/common/PixelPos.java</file>
+        </group>
+    </open-files>
+</project-private>
+=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -12,3 +29,4 @@
         </group>
     </open-files>
 </project-private>
+>>>>>>> 15973316f31240ce838422a7a5a2ad846ac8211e
