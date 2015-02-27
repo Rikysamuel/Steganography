@@ -6,13 +6,7 @@
 
 package GUI;
 
-import common.Common;
-import common.Block4;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import LSBMethod.PVD4;
 import LSBMethod.PVD9;
-import LSBMethod.Standard;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -29,8 +23,10 @@ public class main {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
-        p.hideMsg();
-//        p.processBlock(0, 5178);
+//          PVD9 p = new PVD9("D:\\tes\\result.jpg");
+//          p.extractMessageFromBlock(0, 0);
+//        p.hideMsg();
+        p.processBlock(0, 0);
         p.Flush("D:\\tes\\result.jpg");
     }
 }

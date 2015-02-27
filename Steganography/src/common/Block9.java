@@ -218,20 +218,9 @@ public class Block9 {
             }
         }
         
-//        System.out.println("xmin[0]: " + xmin[0]);
-//        System.out.println("xmin[1]: " + xmin[1]);
-//        System.out.println("xmin[2]: " + xmin[2]);
-//        
-//        System.out.println("tmin[0]: " + tmin[0]);
-//        System.out.println("tmin[1]: " + tmin[1]);
-//        System.out.println("tmin[2]: " + tmin[2]);
-//        
         dmin[0] = tmin[0]/8;    // d-red
-//        System.out.println("dmin[0]: " + dmin[0]);
         dmin[1] = tmin[1]/8;    // d-green
-//        System.out.println("dmin[1]: " + dmin[1]);
         dmin[2] = tmin[2]/8;    // d-blue
-//        System.out.println("dmin[2]: " + dmin[2]);
     }
     
     // get LSB Rule
