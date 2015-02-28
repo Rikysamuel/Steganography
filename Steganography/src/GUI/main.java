@@ -6,10 +6,15 @@
 
 package GUI;
 
+import LSBMethod.PVD4;
 import LSBMethod.PVD9;
+import common.Common;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import common.PlainText;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -23,22 +28,27 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-//        PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
-////          PVD9 p = new PVD9("D:\\tes\\result.jpg");
-////          p.extractMessageFromBlock(0, 0);
-////        p.hideMsg();
-//        p.processBlock(0, 0);
-//        p.Flush("D:\\tes\\result.jpg");
-        String result = "";
-		int ascii;
-		String bitProcess;
-                String tes ="01100001010000010110000101000001011000010100000101100001010000010110000101000001";
-		while(tes.length()>0){
-			bitProcess = tes.substring(0,8);
-			ascii = Integer.parseInt(bitProcess,2);
-			result += (char)ascii;
-			tes = tes.substring(8);
+
+//        PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\plaintext.txt");
+		Common com = new Common("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
+//		plainteks.setStreamPT();
+//		System.out.println(plainteks.ptByte);
+		
+		for(Integer i: com.randomSeed(100,9)){
+			System.out.println(i);
 		}
-		System.out.println( result );
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes4.bmp");
+//		temp.process("hide","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+//		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");
+
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");
+//		temp.process("extract","");
+//		System.out.println(temp.getPlainTeks());
+		
+//		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
+//        p.hideMsg();
+//        p.Flush("D:\\tes\\result.jpg");
+		
+
     }
 }

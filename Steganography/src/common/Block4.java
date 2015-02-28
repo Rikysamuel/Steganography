@@ -24,6 +24,10 @@ public class Block4 {
     public Block4(String tempfile) throws IOException{
 		com = new Common(tempfile);
 		y = new int[4];
+		ya = new int[4];
+		yb = new int[4];
+		yc = new int[4];
+		
     }
     
     public void initBlock(int color, int keyLower, int keyHigher, int threshold){
@@ -36,17 +40,19 @@ public class Block4 {
     }
 	
 	/** DECRPYT **/
-	public String decrypt(int color, int keyLower, int keyHigher, int threshold,String result){
+	public String decrypt(int color, int keyLower, int keyHigher, int threshold, String result){
 		initBlock(color,keyLower,keyHigher,threshold);
 		
-		for(int i=0;i<=3;i++)
+		for(int i=0;i<=3;i++){
+		//	System.out.println("y["+i+"]="+y[i]);
 			result += com.integerToBit(y[i]).substring(8-k);
+		}
 		
 		return result;
 	}
 	
 	/** ENCRYPT **/
-	public void initY(int val, int pos){
+	public void initY(int pos, int val){
 		y[pos] = val;
 	}
 	
@@ -54,7 +60,14 @@ public class Block4 {
 		return yc[pos];
 	}
 	
-	public String encrypt(int color, int keyLower, int keyHigher, int threshold,String plain){
+	private String make8bit(String bit){
+		while(bit.length()<8){
+			bit = '0' + bit;
+		}
+		return bit;
+	}
+	
+	public String encrypt(int color, int keyLower, int keyHigher, int threshold, String plain){
 		plainteks = plain;
 		initBlock(color,keyLower,keyHigher,threshold);
 		
@@ -62,6 +75,11 @@ public class Block4 {
 			commonLSBSubstitution();			
 			modifiedLSBSubstitution();
 			readjustingProcedure();
+			
+			for(int i=0;i<=3;i++){
+				System.out.println(com.integerToBit(yc[i]));
+			}
+			
 		}
 		return plainteks;
 	}
@@ -71,7 +89,7 @@ public class Block4 {
 	private void readjustingProcedure(){
 		System.out.println("--READJUSTING--");
 		
-		yc = new int[4];
+		
 		int[] yTemp = new int[4];
 		int min = 256;
 		
@@ -124,7 +142,7 @@ public class Block4 {
 	private void modifiedLSBSubstitution(){
 		System.out.println("--MODIFIED--");
 		
-		yb = new int[4];
+		
 		int min, temp;
 		String message, MSB, cipher;
 	
@@ -135,10 +153,13 @@ public class Block4 {
 			message = com.integerToBit(yb[i]).substring(8-k);
 			MSB = com.integerToBit(yb[i]).substring(0,8-k);
 			
+//			System.out.println(message);
+//			System.out.println(MSB);
+			
 			for(int j=-1;j<=1;j=j+2){
 				temp = com.bitToInteger(MSB) + j;
 				cipher = com.integerToBit(temp) + message;
-				
+//				System.out.println(cipher);
 				if(min > abs(com.bitToInteger(cipher)-y[i]))
 					yb[i] = com.bitToInteger(cipher);
 			}
@@ -146,10 +167,14 @@ public class Block4 {
 	}
 	
 	private void commonLSBSubstitution(){
-		ya = new int[4];		
+		System.out.println("--COMMONSUBS--");
 		String temp = "";
 		for(int i=0;i<=3;i++){
+//			System.out.println("plainteks="+plainteks);
+//			System.out.println(y[i]);
+			System.out.println(com.integerToBit(y[i]));
 			temp = com.integerToBit(y[i]).substring(0,8-k);
+//			System.out.println("After substring from y");
 			ya[i] = com.bitToInteger(temp+plainteks.substring(0,k));
 			plainteks = plainteks.substring(k);
 		}
