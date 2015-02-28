@@ -510,32 +510,22 @@ public class Intfc extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
             // TODO add your handling code here:
-            this.std = new Standard(fileImg, filePT);
+            this.std = new Standard(fileImg, filePT, "");
         } catch (IOException ex) {
             Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
         }
         String fromPtx = "";
         try {
-            byte[] imgByte = std.img.stream;
-            byte[] ptByte = std.pt.streamPT;
-            fromPtx = "";
-            for (int i = 0; i < ptByte.length; i++){
-                fromPtx += getBits(ptByte[i]);
-            }
-            if (fromPtx.length() < imgByte.length){
-                for (int i = 0; i < fromPtx.length() ; i++){
-                    imgByte[i] = changeBit(imgByte[i], 1, fromPtx.charAt(i));
-                    System.out.println("Ganti byte ke "+i);
-                }
-            }
-            stegoImg = imgByte;
-            InputStream in = new ByteArrayInputStream(imgByte);
+            
+            std.stegonize();
+            //bagian ini hanya menampilkan stego image ke form, belum menyimpannya
+            stegoImg = std.img.stream;
+            InputStream in = new ByteArrayInputStream(stegoImg);
             Image bImageFromConvert = ImageIO.read(in);
             bImageFromConvert = bImageFromConvert.getScaledInstance(333, 222, 1);
             ImageIcon ii = new ImageIcon(bImageFromConvert);
             this.jLabel11.setIcon(ii);
             System.out.println("Selesai!");
-//            ImageIO.write(bImageFromConvert, "jpg", new File("c:/new-darksouls.jpg"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -547,18 +537,19 @@ public class Intfc extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser jf = new JFileChooser();
         String nf = "";
-        FileFilter ft = new FileNameExtensionFilter("JPG Files", "jpg");
+        FileFilter ft = new FileNameExtensionFilter("BMP Files", "bmp");
         jf.addChoosableFileFilter(ft);
         int retval = jf.showSaveDialog(null);
         if (retval == JFileChooser.APPROVE_OPTION){
             File savedFile = jf.getSelectedFile();
             nf += savedFile.getAbsolutePath();
-            nf += ".jpg";
+            nf += ".bmp";
             try{
-                InputStream in = new ByteArrayInputStream(stegoImg);
-                Image stegoToSave = ImageIO.read(in);
-                File outputfile = new File(nf);
-                ImageIO.write((RenderedImage) stegoToSave, "jpg", outputfile);
+                std.saveStegoImg(nf);
+//                InputStream in = new ByteArrayInputStream(stegoImg);
+//                Image stegoToSave = ImageIO.read(in);
+//                File outputfile = new File(nf);
+//                ImageIO.write((RenderedImage) stegoToSave, "bmp", outputfile);
             } catch (java.io.IOException e){
                 System.out.println("Error saving file.");
             }
@@ -568,6 +559,7 @@ public class Intfc extends javax.swing.JFrame {
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
+        //hanya menampilkan stego image ke window, belum membuat objek Standard
         JFileChooser fc = new JFileChooser();
         String sb = "";
         String fullPath = "";
@@ -586,7 +578,7 @@ public class Intfc extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    this.fileImg = fullPath;
+                    this.fileStg = fullPath;
                     this.jLabel6.setText("Stego image : "+sb);
         }
     }//GEN-LAST:event_jButton4MouseClicked
@@ -595,28 +587,35 @@ public class Intfc extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             String ss = "";
-            Common stego = new Common(fileImg);
-            stego.writeToByte(fileImg);
-            for(int i=0; i<88; i++){
-                    ss += stego.getBits(stego.stream[i]);
-                
+//            Common stego = new Common(fileStg);
+//            stego.writeToByte(fileStg);
+            std = new Standard("","",fileStg);
+            for(int i=0; i<16; i++){
+                    ss += std.stimg.getBits(std.stimg.stream[1]).charAt(7);
+//                    System.out.println(stego.getBits(stego.stream[i]));
             }
-//            System.out.println(ss);
+            //cek string of bit pesan yang dihasilkan, sama tidak dengan string of bit pesan asli?
+            System.out.println(ss);
+            String hasil_ext = "";
+            hasil_ext = std.stimg.bitToText(ss);
+            //cek hasil ekstraksi, apakah sama dengan pesan asli?
+            System.out.println(hasil_ext);
 //            String[] sbyte = ss.split( " " );
-            StringBuilder sb = new StringBuilder();
-            for ( int i = 0; i < ss.length(); i+=8 ) { 
-                String ascii = ss.substring(i, i+8);
-                int temp = Integer.parseInt(ascii,2);
-                sb.append( (char)temp );
-                System.out.println((char)temp);
-            }   
+//            StringBuilder sb = new StringBuilder();
+//            for ( int i = 0; i < ss.length(); i+=8 ) { 
+//                String ascii = ss.substring(i, i+8);
+//                int temp = Integer.parseInt(ascii,2);
+//                sb.append( (char)temp );
+//                System.out.println((char)temp);
+//            }   
 //            StringBuilder strb = new StringBuilder();
 //            for (int i =0; i<ss.length();i+=8){
 //                strb.append((char)Integer.parseInt(ss.substring(i, i+8), 2));
 //            }
-            System.out.println(sb.toString());
-            this.jTextArea1.setText(sb.toString());
-            System.out.println("Selesai!");
+//           
+//            System.out.println("break "+sb.toString());
+//            this.jTextArea1.setText(sb.toString());
+//            System.out.println("Selesai!");
         } catch (IOException ex) {
             Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -716,7 +715,7 @@ public class Intfc extends javax.swing.JFrame {
     private javax.swing.JPanel panelForCover;
     private javax.swing.JPanel panelForStego;
     // End of variables declaration//GEN-END:variables
-    public String fileImg;
+    public String fileImg, fileStg;
     public String filePT;
     byte[] stegoImg;
     JScrollPane scrPane = new JScrollPane(jPanel1);
