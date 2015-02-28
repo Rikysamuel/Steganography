@@ -6,13 +6,9 @@
 
 package GUI;
 
-import common.Common;
-import common.Block4;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import LSBMethod.PVD4;
 import LSBMethod.PVD9;
-import LSBMethod.Standard;
+import common.Common;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import common.PlainText;
@@ -49,7 +45,5 @@ public class main {
 //        p.hideMsg();
 //        p.Flush("D:\\tes\\result.jpg");
 		
-		
-
     }
 }
