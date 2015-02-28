@@ -7,9 +7,10 @@
 package GUI;
 
 import LSBMethod.PVD9;
+import common.Common;
+import common.PlainText;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import common.PlainText;
 
 
 /**
@@ -23,16 +24,19 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        PVD9 p = new PVD9("D:\\tes\\input.bmp");
+//        PVD9 p = new PVD9("D:\\tes\\lenna.bmp","D:\\tes\\infile.txt");
+//        p.tes(0,0);
+//        Common c = new Common("D:\\tes\\result.bmp");
 //        p.processBlock(0, 0);
-        p.hideMsg();
-        p.Flush("D:\\tes\\result.bmp");
+//        p.hideMsg();
+//        p.Flush("D:\\tes\\result.bmp");
         
-        PVD9 p2 = new PVD9("D:\\tes\\result.bmp");
+        PVD9 p2 = new PVD9("D:\\tes\\result.bmp","D:\\tes\\infile.txt");
+//        p2.tes(0,0);
 //        String temp = p2.extractMessageFromBlock(0, 0);
-//        System.out.println(temp);
+//        System.out.println(c.bitToText(temp));
 //        System.out.println(temp.length());
-        System.out.println(p2.extractMsg(24));
-//        System.out.println(p.bit8("1010"));
+        System.out.println(p2.extractMsg(14));
+//        System.out.println(p.bit8("101"));
     }
 }
