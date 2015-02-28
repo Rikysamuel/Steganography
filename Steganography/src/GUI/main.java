@@ -23,11 +23,16 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
-//          PVD9 p = new PVD9("D:\\tes\\result.jpg");
-//          p.extractMessageFromBlock(0, 0);
-//        p.hideMsg();
-        p.processBlock(0, 0);
-        p.Flush("D:\\tes\\result.jpg");
+        PVD9 p = new PVD9("D:\\tes\\input.bmp");
+//        p.processBlock(0, 0);
+        p.hideMsg();
+        p.Flush("D:\\tes\\result.bmp");
+        
+        PVD9 p2 = new PVD9("D:\\tes\\result.bmp");
+//        String temp = p2.extractMessageFromBlock(0, 0);
+//        System.out.println(temp);
+//        System.out.println(temp.length());
+        System.out.println(p2.extractMsg(24));
+//        System.out.println(p.bit8("1010"));
     }
 }
