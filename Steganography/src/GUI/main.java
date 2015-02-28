@@ -12,6 +12,9 @@ import common.Common;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import common.PlainText;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -30,16 +33,16 @@ public class main {
 //		plainteks.setStreamPT();
 //		System.out.println(plainteks.ptByte);
 		
-//		PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
-//		System.out.println(plainteks.ptByte);
-//		System.out.println(com.bitToText(plainteks.ptByte));
-//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes3.bmp");
-//		temp.process(plainteks.ptByte,"encrypt");
-//		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result3.bmp");
+		for(Integer i: com.randomSeed(100,9)){
+			System.out.println(i);
+		}
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes4.bmp");
+//		temp.process("hide","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+//		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");
 
-		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result3.bmp");
-		temp.process("","decrypt");
-		System.out.println(temp.getPlainTeks());
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");
+//		temp.process("extract","");
+//		System.out.println(temp.getPlainTeks());
 		
 //		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
 //        p.hideMsg();

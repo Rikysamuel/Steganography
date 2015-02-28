@@ -9,6 +9,7 @@ package LSBMethod;
 import common.Common;
 import common.Block4;
 import common.PixelPos;
+import common.PlainText;
 import java.io.IOException;
 
 /**
@@ -21,7 +22,8 @@ public class PVD4 {
     Block4 blockProcess;
 	int T, kLower, kHigher;
 	String plainteks;
-	int height, width;
+	int height, width, maxData;
+	PlainText pt;
     
     public PVD4(String picturename) throws IOException{
 		System.out.println("--CONSTRUCT PVD4--");
@@ -32,11 +34,14 @@ public class PVD4 {
 		}
 		blockProcess = new Block4(picturename);
 		
+		
+		
 		com = new Common(picturename);
 		com.imageToPix();
 		
 		width = 0;
 		height = 0;
+		
 		
 		T = 5;
 		kLower = 2;
@@ -48,12 +53,15 @@ public class PVD4 {
     }
 	
 	public String getPlainTeks(){
-		return com.bitToText(plainteks);
+		String temp = com.bitToText(plainteks);
+		return temp.substring(0,temp.length()-3);
 	}
     
 	private void initBlocks(int pos){
 		int j = (pos % width) * 2;
 		int i = (pos / width) * 2;
+		
+		System.out.println("i,j= "+i+" "+j);
 		
 		blocks[0].setI(i);
 		blocks[0].setJ(j);
@@ -76,6 +84,7 @@ public class PVD4 {
 			height++;
 			i = i + 2;
 		}
+		maxData = width * height * 3 * 4 * kLower;
 	}
 	
 	private boolean process1Block(int pos, String process, boolean endProcess){
@@ -93,15 +102,15 @@ public class PVD4 {
 
 			//System.out.println("After inisialization Y per Block4");
 
-			if(process.equals("encrypt")){
+			if(process.equals("hide")){
 				// processing hide message
 				plainteks = blockProcess.encrypt(color,kLower,kHigher,T,plainteks);
 				for(int k=0;k<=3;k++)
 					com.editPixel(color, blocks[k].getI(), blocks[k].getJ(), blockProcess.getYfinal(k));
 				if(plainteks.isEmpty())
 					endProcess = true;
-			} else /*if(process.equals("decrypt"))*/ {
-				System.out.println("-decrypt-");
+			} else /*extract*/ {
+				System.out.println("-extract-");
 				plainteks = blockProcess.decrypt(color,kLower,kHigher,T,plainteks);
 				System.out.println(plainteks);
 				if(com.bitToText(plainteks).endsWith("EOF"))
@@ -118,42 +127,31 @@ public class PVD4 {
 		com.editPixel(color, blocks[i].getI(), blocks[i].getJ(), blockProcess.getYfinal(i));
 	}
 	
-    public void process(String plaintext, String process) throws IOException{
+    public void process(String process, String textfile) throws IOException{
 		System.out.println("--PROCESS--");
 		System.out.println(process);
 		
 		initProcess();
-		plainteks = plaintext;
+		if(process.equals("hide")){
+			pt = new PlainText(textfile);
+			pt.setStreamPT();
+			plainteks = pt.ptByte + com.textToBit("EOF");			
+
+			System.out.println(plainteks);
+			System.out.println(com.bitToText(plainteks));
+		} else /* extract */{
+			plainteks = "";
+		}
+		
 		int i = 0;
 	//	boolean outOfBound = false;
 		boolean endProcess = false;
 		
 		while(i < height*width && !endProcess){
+			System.out.println("pos="+i);
 			endProcess = process1Block(i,process, endProcess);
+			i++;
 		}
-		
-//		while(i <= height && !outOfBound && !endProcess){
-//			int j = 0;
-//			while(j <= width && !outOfBound && !endProcess){
-//			//	System.out.println("[PV4] plainteks="+com.bitToText(plainteks));
-////				System.out.println("[PV4] plainteks="+plainteks);
-//				// initialization PixelPos per Block4
-//				
-//				/* diproses di void process1Block di atas */
-//				process1Block();
-//				
-//				j++;
-////				j = j + 2;
-////				if(j>com.height)
-////					outOfBound = true;
-//			}
-//			i++;
-////			i = i + 2;
-////			if(i > com.height)
-////				outOfBound = true;
-////			else
-////				outOfBound = false;
-//		}
     }
 }
 
