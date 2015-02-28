@@ -24,12 +24,12 @@ public class main {
     public static void main(String[] args) throws IOException{
         PVD9 p = new PVD9("D:\\tes\\lenna.bmp","D:\\tes\\infile.txt");
 //        p.tes(0,0);
-        Common c = new Common("D:\\tes\\result.bmp");
+//        Common c = new Common("D:\\tes\\result.bmp");
 //        p.processBlock(0, 0);
         p.hideMsg();
         p.Flush("D:\\tes\\result.bmp");
         
-        PVD9 p2 = new PVD9("D:\\tes\\result.bmp","D:\\tes\\infile.txt");
+        PVD9 p2 = new PVD9("D:\\tes\\result.bmp","");
 //        p2.tes(0,0);
 //        String temp = p2.extractMessageFromBlock(0, 0);
 //        System.out.println(c.bitToText(temp));

@@ -5,29 +5,19 @@
  */
 package GUI;
 
+import LSBMethod.PVD9;
 import LSBMethod.Standard;
-import common.Common;
-import java.awt.BorderLayout;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -38,6 +28,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Intfc extends javax.swing.JFrame {
 
+    PVD9 pvd9;
+    
     /**
      * Creates new form Intfc
      */
@@ -167,7 +159,7 @@ public class Intfc extends javax.swing.JFrame {
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -299,6 +291,11 @@ public class Intfc extends javax.swing.JFrame {
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -461,7 +458,7 @@ public class Intfc extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -489,7 +486,7 @@ public class Intfc extends javax.swing.JFrame {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
                     this.fileImg = fullPath;
-                    this.jLabel1.setText("Cover image : "+sb);
+                    this.jLabel1.setText("Cover image : "+fullPath);
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -504,7 +501,7 @@ public class Intfc extends javax.swing.JFrame {
                     File selectedfile = fc.getSelectedFile();
                     sb += selectedfile.getName();
                     fullPath += selectedfile.getAbsolutePath();
-                    this.jLabel2.setText("File pesan : "+sb);
+                    this.jLabel2.setText("File pesan : "+fullPath);
                     this.filePT = fullPath;
         }
     }//GEN-LAST:event_jButton3MouseClicked
@@ -515,38 +512,51 @@ public class Intfc extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        try {
+        if(buttonGroup1.isSelected(jRadioButton3.getModel())){
+            try {
+                String filename = jLabel1.getText();
+                String infile = jLabel2.getText();
+                filename = filename.replace("\\", "\\\\").substring(14);
+                infile = infile.replace("\\", "\\\\").substring(13);
+                pvd9 = new PVD9(filename,infile);
+                pvd9.hideMsg();
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else{
+            try {
             // TODO add your handling code here:
-            this.std = new Standard(fileImg, filePT, "");
-        } catch (IOException ex) {
-            Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String fromPtx = "";
-        try {
-            
-            std.stegonize();
-            //bagian ini hanya menampilkan stego image ke form, belum menyimpannya
-            stegoImg = std.img.stream;
-//            String temp="";
-//            for (int i = 0; i < 16; i++){
-//                temp += std.img.getBits(std.img.stream[i]);
-//            }
-//            System.out.println(temp);
-            InputStream in = new ByteArrayInputStream(std.img.stream);
-            Image bImageFromConvert;
-            bImageFromConvert = ImageIO.read(in);
-//            ImageIO.write(bImageFromConvert, "bmp", new File("D:\\[6]\\IF4020 Kripto\\Tubes 1\\testtt.bmp"));
-            System.out.println("TES 3");
-            bImageFromConvert = bImageFromConvert.getScaledInstance(333, 222, 1);
-            System.out.println("TES 4");
-            ImageIcon ii = new ImageIcon(bImageFromConvert);
-            System.out.println("TES 5");
-            this.jLabel11.setIcon(ii);
-            System.out.println("Selesai!");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+                this.std = new Standard(fileImg, filePT, "");
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String fromPtx = "";
+            try {
+
+                std.stegonize();
+                //bagian ini hanya menampilkan stego image ke form, belum menyimpannya
+                stegoImg = std.img.stream;
+    //            String temp="";
+    //            for (int i = 0; i < 16; i++){
+    //                temp += std.img.getBits(std.img.stream[i]);
+    //            }
+    //            System.out.println(temp);
+                InputStream in = new ByteArrayInputStream(std.img.stream);
+                Image bImageFromConvert;
+                bImageFromConvert = ImageIO.read(in);
+    //            ImageIO.write(bImageFromConvert, "bmp", new File("D:\\[6]\\IF4020 Kripto\\Tubes 1\\testtt.bmp"));
+                System.out.println("TES 3");
+                bImageFromConvert = bImageFromConvert.getScaledInstance(333, 222, 1);
+                System.out.println("TES 4");
+                ImageIcon ii = new ImageIcon(bImageFromConvert);
+                System.out.println("TES 5");
+                this.jLabel11.setIcon(ii);
+                System.out.println("Selesai!");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -561,16 +571,24 @@ public class Intfc extends javax.swing.JFrame {
             File savedFile = jf.getSelectedFile();
             nf += savedFile.getAbsolutePath();
             nf += ".bmp";
-            try{
+            if (buttonGroup1.isSelected(jRadioButton3.getModel())){
+                try {
+                    pvd9.Flush(nf);
+                } catch (IOException ex) {
+                    Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else{
+                try{
                 std.saveStegoImg(nf);
-//                InputStream in = new ByteArrayInputStream(stegoImg);
-//                Image stegoToSave = ImageIO.read(in);
-//                File outputfile = new File(nf);
-//                ImageIO.write((RenderedImage) stegoToSave, "bmp", outputfile);
-            } catch (java.io.IOException e){
-                System.out.println("Error saving file.");
+    //                InputStream in = new ByteArrayInputStream(stegoImg);
+    //                Image stegoToSave = ImageIO.read(in);
+    //                File outputfile = new File(nf);
+    //                ImageIO.write((RenderedImage) stegoToSave, "bmp", outputfile);
+                } catch (java.io.IOException e){
+                    System.out.println("Error saving file.");
+                }
+                
             }
-            
         }
     }//GEN-LAST:event_jButton6MouseClicked
 
@@ -596,51 +614,67 @@ public class Intfc extends javax.swing.JFrame {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
                     this.fileStg = fullPath;
-                    this.jLabel6.setText("Stego image : "+sb);
+                    this.jLabel6.setText("Stego image : "+fullPath);
         }
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        try {
-            // TODO add your handling code here:
-            String ss = "";
-//            Common stego = new Common(fileStg);
-//            stego.writeToByte(fileStg);
-            std = new Standard("","",fileStg);
-            for(int i=400; i<416; i++){
-                    ss += std.stimg.getBits(std.stimg.stream[i]).charAt(7);
-//                    System.out.println(stego.getBits(stego.stream[i]));
+        if (buttonGroup2.isSelected(jRadioButton6.getModel())){
+            try {
+                String filename = jLabel6.getText();
+                filename = filename.replace("\\", "\\\\").substring(14);
+                System.out.println(filename);
+                pvd9 = new PVD9(filename,"");
+                jTextArea1.setText(pvd9.extractMsg(28));
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //cek string of bit pesan yang dihasilkan, sama tidak dengan string of bit pesan asli?
-            System.out.println("value ss: "+ss);
-            String hasil_ext = "";
-            hasil_ext = std.stimg.bitToText(ss);
-            //cek hasil ekstraksi, apakah sama dengan pesan asli?
-            System.out.println("value hasil: "+hasil_ext);
-//            String[] sbyte = ss.split( " " );
-//            StringBuilder sb = new StringBuilder();
-//            for ( int i = 0; i < ss.length(); i+=8 ) { 
-//                String ascii = ss.substring(i, i+8);
-//                int temp = Integer.parseInt(ascii,2);
-//                sb.append( (char)temp );
-//                System.out.println((char)temp);
-//            }   
-//            StringBuilder strb = new StringBuilder();
-//            for (int i =0; i<ss.length();i+=8){
-//                strb.append((char)Integer.parseInt(ss.substring(i, i+8), 2));
-//            }
-//           
-//            System.out.println("break "+sb.toString());
-//            this.jTextArea1.setText(sb.toString());
-//            System.out.println("Selesai!");
-        } catch (IOException ex) {
-            Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+        } else{
+            try {
+                // TODO add your handling code here:
+                String ss = "";
+    //            Common stego = new Common(fileStg);
+    //            stego.writeToByte(fileStg);
+                std = new Standard("","",fileStg);
+                for(int i=400; i<416; i++){
+                        ss += std.stimg.getBits(std.stimg.stream[i]).charAt(7);
+    //                    System.out.println(stego.getBits(stego.stream[i]));
+                }
+                //cek string of bit pesan yang dihasilkan, sama tidak dengan string of bit pesan asli?
+                System.out.println("value ss: "+ss);
+                String hasil_ext = "";
+                hasil_ext = std.stimg.bitToText(ss);
+                //cek hasil ekstraksi, apakah sama dengan pesan asli?
+                System.out.println("value hasil: "+hasil_ext);
+    //            String[] sbyte = ss.split( " " );
+    //            StringBuilder sb = new StringBuilder();
+    //            for ( int i = 0; i < ss.length(); i+=8 ) { 
+    //                String ascii = ss.substring(i, i+8);
+    //                int temp = Integer.parseInt(ascii,2);
+    //                sb.append( (char)temp );
+    //                System.out.println((char)temp);
+    //            }   
+    //            StringBuilder strb = new StringBuilder();
+    //            for (int i =0; i<ss.length();i+=8){
+    //                strb.append((char)Integer.parseInt(ss.substring(i, i+8), 2));
+    //            }
+    //           
+    //            System.out.println("break "+sb.toString());
+    //            this.jTextArea1.setText(sb.toString());
+    //            System.out.println("Selesai!");
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     // return array of bits in a certain byte
     public String getBits(byte b){

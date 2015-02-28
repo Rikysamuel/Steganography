@@ -13,8 +13,6 @@ import common.PlainText;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -33,14 +31,14 @@ public class PVD9 {
     
     public PVD9(String filename, String textfile) throws IOException{
         com = new Common(filename);
-        pt = new PlainText(textfile);
-        pt.setStreamPT();
-        text = pt.ptByte;
-//        text = "101010101111111100000000";
-//        text = "0110111001100001011011010110000100100000011100110110000101111001011000010010000001110010011010010110101101111001";
-//        System.out.println(text);
-//        System.out.println(text.length());
-//        System.out.println("char ke 10: " + text.charAt(10));
+        if (!textfile.equals("")){
+            pt = new PlainText(textfile);
+            pt.setStreamPT();
+            text = pt.ptByte;
+        }else{
+            pt = null;
+            text = null;
+        }
         pointer = 0; pointerres = 0;
         b = new Block9();
         blocks = new ArrayList<>();
