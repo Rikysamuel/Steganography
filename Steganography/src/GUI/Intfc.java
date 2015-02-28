@@ -15,9 +15,11 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.logging.Level;
@@ -29,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import net.sf.image4j.codec.bmp.BMPEncoder;
 
 /**
  *
@@ -520,10 +523,20 @@ public class Intfc extends javax.swing.JFrame {
             std.stegonize();
             //bagian ini hanya menampilkan stego image ke form, belum menyimpannya
             stegoImg = std.img.stream;
-            InputStream in = new ByteArrayInputStream(stegoImg);
-            Image bImageFromConvert = ImageIO.read(in);
+//            String temp="";
+//            for (int i = 0; i < 16; i++){
+//                temp += std.img.getBits(std.img.stream[i]);
+//            }
+//            System.out.println(temp);
+            InputStream in = new ByteArrayInputStream(std.img.stream);
+            Image bImageFromConvert;
+            bImageFromConvert = ImageIO.read(in);
+//            ImageIO.write(bImageFromConvert, "bmp", new File("D:\\[6]\\IF4020 Kripto\\Tubes 1\\testtt.bmp"));
+            System.out.println("TES 3");
             bImageFromConvert = bImageFromConvert.getScaledInstance(333, 222, 1);
+            System.out.println("TES 4");
             ImageIcon ii = new ImageIcon(bImageFromConvert);
+            System.out.println("TES 5");
             this.jLabel11.setIcon(ii);
             System.out.println("Selesai!");
         } catch (FileNotFoundException ex) {
@@ -590,16 +603,16 @@ public class Intfc extends javax.swing.JFrame {
 //            Common stego = new Common(fileStg);
 //            stego.writeToByte(fileStg);
             std = new Standard("","",fileStg);
-            for(int i=0; i<16; i++){
-                    ss += std.stimg.getBits(std.stimg.stream[1]).charAt(7);
+            for(int i=400; i<416; i++){
+                    ss += std.stimg.getBits(std.stimg.stream[i]).charAt(7);
 //                    System.out.println(stego.getBits(stego.stream[i]));
             }
             //cek string of bit pesan yang dihasilkan, sama tidak dengan string of bit pesan asli?
-            System.out.println(ss);
+            System.out.println("value ss: "+ss);
             String hasil_ext = "";
             hasil_ext = std.stimg.bitToText(ss);
             //cek hasil ekstraksi, apakah sama dengan pesan asli?
-            System.out.println(hasil_ext);
+            System.out.println("value hasil: "+hasil_ext);
 //            String[] sbyte = ss.split( " " );
 //            StringBuilder sb = new StringBuilder();
 //            for ( int i = 0; i < ss.length(); i+=8 ) { 
