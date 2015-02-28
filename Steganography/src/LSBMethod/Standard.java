@@ -60,10 +60,10 @@ public class Standard {
             //cek string of bit plainteks
             System.out.println(ptemp);
             //masukkan bit plainteks ke byte gambar
-            for (int i = 0; i < ptemp.length(); i++){
+            for (int i = 400; i < ptemp.length()+400; i++){
                 //versi: cek byte mula-mula dan byte setelah dimasuki bit pesan
                 System.out.println("origin: "+img.getBits(img.stream[i]));
-                int t = ptemp.charAt(i) - '0';
+                int t = ptemp.charAt(i-400) - '0';
                 img.stream[i] = img.changeBit(img.stream[i], 1, t);
                 System.out.println("ubah: "+img.getBits(img.stream[i]));
             }
@@ -81,7 +81,7 @@ public class Standard {
         stimg.writeToByte(filenameSImg);
         int count = stimg.stream.length;
         String ext = "";
-        for (int i =0 ; i < count; i++){
+        for (int i =400 ; i < count; i++){
             ext += stimg.getBits(stimg.stream[i]).charAt(7);
         }
         //cek string of byte hasil ekstraksi

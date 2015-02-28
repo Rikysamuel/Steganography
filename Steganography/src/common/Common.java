@@ -15,7 +15,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
@@ -78,7 +81,12 @@ public class Common {
     }
     
     public String integerToBit(int val){
-        return Integer.toBinaryString(val);
+		String temp = Integer.toBinaryString(val);
+        while(temp.length() < 8){
+			temp = '0' + temp;
+		}
+		return temp;
+//		return Integer.toBinaryString(val);
     }
     
     // edit array el with a certain value
@@ -197,11 +205,40 @@ public class Common {
 
 		while(bit.length()>0){
 			bitProcess = bit.substring(0,8);
+			//System.out.println(bitProcess);
 			ascii = bitToInteger(bitProcess);
 			result += (char)ascii;
 			bit = bit.substring(8);
 		}
 		return result;
 	} 
+	
+	public String textToBit(String text){
+		String result = "";
+		int i = 0;
+		int ascii;
+		while(i<text.length()){
+			ascii = (int)text.charAt(i);
+			result += integerToBit(ascii);
+			i++;
+		}
+		return result;
+	}
     
+	// generate random unique numbers with seed and within range size
+	// e.g: size=9, make a list of random number within 0-8
+	public List<Integer> randomSeed (int seed,int size){
+		List<Integer> listRandom = new ArrayList<>();
+		Random ran = new Random(100);
+		int temp;
+		while(listRandom.size() < size){
+			temp = ran.nextInt(size);
+			if(!listRandom.contains(temp)){
+				listRandom.add(temp);
+			}
+			
+		}
+		return listRandom;
+	}
+	
 }
