@@ -34,15 +34,22 @@ public class main {
 //		plainteks.setStreamPT();
 //		System.out.println(plainteks.ptByte);
 		
-//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
-	//	temp.process(plainteks.ptByte,encrypt);
+//		PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+//		System.out.println(plainteks.ptByte);
+//		System.out.println(com.bitToText(plainteks.ptByte));
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes3.bmp");
+//		temp.process(plainteks.ptByte,"encrypt");
+//		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result3.bmp");
+
+		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result3.bmp");
+		temp.process("","decrypt");
+		System.out.println(temp.getPlainTeks());
 		
 //		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
 //        p.hideMsg();
 //        p.Flush("D:\\tes\\result.jpg");
 		
-		PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
-		System.out.println(plainteks.ptByte);
-		System.out.println(com.bitToText(plainteks.ptByte));
+		
+
     }
 }

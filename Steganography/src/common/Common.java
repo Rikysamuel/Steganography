@@ -78,7 +78,12 @@ public class Common {
     }
     
     public String integerToBit(int val){
-        return Integer.toBinaryString(val);
+		String temp = Integer.toBinaryString(val);
+        while(temp.length() < 8){
+			temp = '0' + temp;
+		}
+		return temp;
+//		return Integer.toBinaryString(val);
     }
     
     // edit array el with a certain value
@@ -197,6 +202,7 @@ public class Common {
 
 		while(bit.length()>0){
 			bitProcess = bit.substring(0,8);
+			//System.out.println(bitProcess);
 			ascii = bitToInteger(bitProcess);
 			result += (char)ascii;
 			bit = bit.substring(8);
