@@ -303,15 +303,25 @@ public class PVD9 {
        return String.valueOf(result).substring(0, pointerres);
     }
     
-    public String extractMsg(int len){
+    public String extractMsg(){
         String temp = com.bitToText(extractMessageFromBlock(0,0));
         pointerres = 0;
+        int height = com.height;
+        int width = com.width;
+        if (height%3!=0){
+            height = (height/3)*3;
+        }
+        if (width%3!=0){
+            width = (width/3)*3;
+        }
         int i=0; int j=3;
-        while(i<com.height-1){
-            if(j<com.width-1){
-                temp = temp + com.bitToText(extractMessageFromBlock(i,j));
+        while(i<height-1){
+            if(j<width-1){
+                temp = temp + com.bitToText(bit8(extractMessageFromBlock(i,j)));
                 pointerres = 0;
-                if (temp.length()>=len){
+                System.out.println(temp);
+                System.out.println("ok");
+                if (temp.contains("EOF")){
                     break;
                 }
                 j=j+3;
@@ -320,7 +330,7 @@ public class PVD9 {
                 i=i+3;
             }
         }        
-        return temp.substring(0,len);
+        return temp.substring(0,temp.indexOf("EOF"));
     }
     
     public void Flush(String outfile) throws IOException{

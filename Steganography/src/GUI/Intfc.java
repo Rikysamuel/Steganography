@@ -625,7 +625,7 @@ public class Intfc extends javax.swing.JFrame {
                 filename = filename.replace("\\", "\\\\").substring(14);
                 System.out.println(filename);
                 pvd9 = new PVD9(filename,"");
-                jTextArea1.setText(pvd9.extractMsg(28));
+                jTextArea1.setText(pvd9.extractMsg());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
