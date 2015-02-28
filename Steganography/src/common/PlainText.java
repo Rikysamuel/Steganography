@@ -23,7 +23,7 @@ public class PlainText {
     public PlainText (String filename) throws IOException{
         Path filein = Paths.get(filename);
         streamPT = Files.readAllBytes(filein); 
-        this.setStreamPT();
+//        this.setStreamPT();
     }
     
     public void setPt(String s){
