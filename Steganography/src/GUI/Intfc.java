@@ -518,10 +518,12 @@ public class Intfc extends javax.swing.JFrame {
         try {
             byte[] imgByte = std.img.stream;
             byte[] ptByte = std.pt.streamPT;
+            
             fromPtx = "";
             for (int i = 0; i < ptByte.length; i++){
-                fromPtx += getBits(ptByte[i]);
+                fromPtx += std.pt.getBits(std.pt.streamPT[i]);
             }
+            System.out.println(fromPtx);
             if (fromPtx.length() < imgByte.length){
                 for (int i = 0; i < fromPtx.length() ; i++){
                     imgByte[i] = changeBit(imgByte[i], 1, fromPtx.charAt(i));
@@ -547,18 +549,18 @@ public class Intfc extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser jf = new JFileChooser();
         String nf = "";
-        FileFilter ft = new FileNameExtensionFilter("JPG Files", "jpg");
+        FileFilter ft = new FileNameExtensionFilter("BMP Files", "bmp");
         jf.addChoosableFileFilter(ft);
         int retval = jf.showSaveDialog(null);
         if (retval == JFileChooser.APPROVE_OPTION){
             File savedFile = jf.getSelectedFile();
             nf += savedFile.getAbsolutePath();
-            nf += ".jpg";
+            nf += ".bmp";
             try{
                 InputStream in = new ByteArrayInputStream(stegoImg);
                 Image stegoToSave = ImageIO.read(in);
                 File outputfile = new File(nf);
-                ImageIO.write((RenderedImage) stegoToSave, "jpg", outputfile);
+                ImageIO.write((RenderedImage) stegoToSave, "bmp", outputfile);
             } catch (java.io.IOException e){
                 System.out.println("Error saving file.");
             }
@@ -586,7 +588,7 @@ public class Intfc extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    this.fileImg = fullPath;
+                    this.fileStg = fullPath;
                     this.jLabel6.setText("Stego image : "+sb);
         }
     }//GEN-LAST:event_jButton4MouseClicked
@@ -595,13 +597,13 @@ public class Intfc extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             String ss = "";
-            Common stego = new Common(fileImg);
-            stego.writeToByte(fileImg);
+            Common stego = new Common(fileStg);
+            stego.writeToByte(fileStg);
             for(int i=0; i<88; i++){
-                    ss += stego.getBits(stego.stream[i]);
-                
+                    ss += stego.getBits(stego.stream[i]).charAt(7);
+//                    System.out.println(stego.getBits(stego.stream[i]));
             }
-//            System.out.println(ss);
+            System.out.println(ss);
 //            String[] sbyte = ss.split( " " );
             StringBuilder sb = new StringBuilder();
             for ( int i = 0; i < ss.length(); i+=8 ) { 
@@ -614,7 +616,8 @@ public class Intfc extends javax.swing.JFrame {
 //            for (int i =0; i<ss.length();i+=8){
 //                strb.append((char)Integer.parseInt(ss.substring(i, i+8), 2));
 //            }
-            System.out.println(sb.toString());
+           
+            System.out.println("break "+sb.toString());
             this.jTextArea1.setText(sb.toString());
             System.out.println("Selesai!");
         } catch (IOException ex) {
@@ -716,7 +719,7 @@ public class Intfc extends javax.swing.JFrame {
     private javax.swing.JPanel panelForCover;
     private javax.swing.JPanel panelForStego;
     // End of variables declaration//GEN-END:variables
-    public String fileImg;
+    public String fileImg, fileStg;
     public String filePT;
     byte[] stegoImg;
     JScrollPane scrPane = new JScrollPane(jPanel1);
