@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import vigenerecipher.VigenereCipher;
 import vigenerecipher.VigenereH;
+import vigenerecipher.Vigenere;
 
 
 /**
@@ -42,18 +43,18 @@ public class PlainText {
 
     }
     
-//	public String getPlaintextAfterDecrypt(String cipher){
-//		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
-//		String plaintext="";
-//		vc.setPesan(cipher.toUpperCase());
-//		System.out.println(cipher);
-//		vc.setKunci(key.toUpperCase());
-//		System.out.println(key);
-//		vc.genKey();
-//		plaintext = vc.processDecExtended();
-//		System.out.println(plaintext);
-//		return plaintext;
-//	}
+	public String getPlaintextAfterDecrypt(String cipher){
+		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
+		String plaintext="";
+		vc.setPesan(cipher.toUpperCase());
+		System.out.println(cipher);
+		vc.setKunci(key.toUpperCase());
+		System.out.println(key);
+		vc.genKey();
+		plaintext = vc.processDecExtended();
+		System.out.println(plaintext);
+		return plaintext;
+	}
 	
     public void setPt(String s){
         this.pt = s;
