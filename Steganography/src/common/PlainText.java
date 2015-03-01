@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import vigenerecipher.VigenereCipher;
+import vigenerecipher.vigenere;
 
 /**
  *
@@ -19,7 +20,7 @@ import vigenerecipher.VigenereCipher;
  */
 public class PlainText {
     private String pt;
-    public VigenereCipher vc;
+    public vigenere vc;
     public byte[] streamPT;
     public String ptByte = "";
     public String key;
@@ -27,15 +28,15 @@ public class PlainText {
     public PlainText (String filename, String key) throws IOException{
         Path filein = Paths.get(filename);
         this.key = key;
-        vc = new VigenereCipher();
-        String temp = vc.FileReader(filename);
-        vc.setStr(temp);
-        vc.setKey(key);
-        vc.genKey();
-        temp = vc.processExtended();
+        vc = new vigenere();
+        String temp = vc.readFile(filename);
+        vc.setPesan(temp);
+        vc.setKunci(key);
+//        vc.genKey();
+        vc.encryptExtended();
         //cek
-        System.out.println("cek hasil vigenere"+temp);
-        streamPT = temp.getBytes(Charset.forName("UTF-8"));
+        System.out.println("cek hasil vigenere"+ vc.getCipher());
+        streamPT = vc.getCipher().getBytes();
     }
     
     public void setPt(String s){
@@ -55,5 +56,9 @@ public class PlainText {
     
     public String getBits(byte b){
         return String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
+    }
+    
+    public void decrypt(){
+        vc.decryptExtended();
     }
 }

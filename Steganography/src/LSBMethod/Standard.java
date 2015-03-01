@@ -13,6 +13,7 @@ import java.io.IOException;
 import static java.lang.Math.log10;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
+import vigenerecipher.vigenere;
 
 /**
  *
@@ -94,6 +95,11 @@ public class Standard {
         }
         //cek string of byte hasil ekstraksi
         System.out.println(ext);
+        vigenere cip = new vigenere();
+        cip.setCipher(ext);
+        cip.setKunci(key);
+        cip.decryptExtended();
+        System.out.println(cip.getPesan());
     }
     
     public void countPSNR(){
