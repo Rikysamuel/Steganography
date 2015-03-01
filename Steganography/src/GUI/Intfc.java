@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -318,7 +320,11 @@ public class Intfc extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6))
                     .addComponent(panelForStego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                 .addContainerGap(301, Short.MAX_VALUE))
+=======
+                .addContainerGap(302, Short.MAX_VALUE))
+>>>>>>> 6a7a64295050f3abce0712e6354a48dbf7093500
         );
 
         jTabbedPane1.addTab("Penyisipan", jPanel1);
@@ -327,6 +333,11 @@ public class Intfc extends javax.swing.JFrame {
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -359,6 +370,11 @@ public class Intfc extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton7.setText("Save pesan");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jInternalFrame3.setTitle("Stego Image");
         jInternalFrame3.setVisible(true);
@@ -530,6 +546,7 @@ public class Intfc extends javax.swing.JFrame {
                 infile = infile.replace("\\", "\\\\").substring(13);
                 pvd4 = new PVD4(filename);
                 pvd4.process("hide",key,infile);
+				PSNRLabel.setText(String.valueOf(pvd4.countPSNR()));
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -537,7 +554,7 @@ public class Intfc extends javax.swing.JFrame {
             try {
                 String filename = jLabel1.getText();
                 String infile = jLabel2.getText();
-				String key = jTextField1.getText();
+                String key = jTextField1.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
                 infile = infile.replace("\\", "\\\\").substring(13);
                 pvd9 = new PVD9(filename,infile);
@@ -650,9 +667,9 @@ public class Intfc extends javax.swing.JFrame {
             try {
                 String filename = jLabel6.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
-		String key = jTextField1.getText();
+				String key = jTextField1.getText();
                 pvd4 = new PVD4(filename);
-		pvd4.process("extract",key,"");
+				pvd4.process("extract",key,"");
                 jTextArea1.setText(pvd4.getPlainTeks());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
@@ -661,7 +678,6 @@ public class Intfc extends javax.swing.JFrame {
                 String temp = pvd9.extractMsg();
                 System.out.println(temp);
                 jTextArea1.setText(temp);
-//            }
         } else{
             try {
                 // TODO add your handling code here:
@@ -694,6 +710,30 @@ public class Intfc extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.showSaveDialog(this);
+        String filename = fc.getSelectedFile().getAbsolutePath();
+        filename = filename.replace("\\", "\\\\");
+        if(!filename.substring(filename.length()-3).equals("txt")){
+            filename = filename.concat(".txt");
+        }
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(filename,"UTF-8");
+        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+            Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (pw != null){
+            pw.println(jTextArea1.getText());
+            pw.close();
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // return array of bits in a certain byte
     public String getBits(byte b){
