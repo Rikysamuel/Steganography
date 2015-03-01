@@ -31,10 +31,10 @@ public class PVD9 {
     private int maxData;
     private List<Integer> random;
     
-    public PVD9(String filename, String textfile) throws IOException{
+    public PVD9(String filename, String textfile, String key) throws IOException{
         com = new Common(filename);
         if (!textfile.equals("")){
-            pt = new PlainText(textfile);
+            pt = new PlainText(textfile,key);
             pt.setStreamPT();
             text = pt.ptByte;
             System.out.println(text);

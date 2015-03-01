@@ -57,6 +57,8 @@ public class Common {
 			bluePix = new int [height][width];
 
 			stream = null;
+			
+			listRandomPosition = new ArrayList<>();
     }
     
     
@@ -202,7 +204,9 @@ public class Common {
 		String result = "";
 		int ascii;
 		String bitProcess;
-
+		while(bit.length() % 8 != 0){
+			bit = '0' + bit;
+		}
 		while(bit.length()>0){
 			bitProcess = bit.substring(0,8);
 			//System.out.println(bitProcess);
@@ -227,18 +231,40 @@ public class Common {
     
 	// generate random unique numbers with seed and within range size
 	// e.g: size=9, make a list of random number within 0-8
-	public List<Integer> randomSeed (int seed,int size){
+	public List<Integer> randomSeed (int seed,int size/*, int sizeNeeded*/){
 		List<Integer> listRandom = new ArrayList<>();
-		Random ran = new Random(100);
+		Random ran = new Random(seed);
 		int temp;
-		while(listRandom.size() < size){
+		while(listRandom.size() < size/*Needed*/){
 			temp = ran.nextInt(size);
 			if(!listRandom.contains(temp)){
 				listRandom.add(temp);
+				System.out.println(temp);
 			}
 			
 		}
 		return listRandom;
+	}
+	public List<Integer> listRandomPosition;
+	public int randomPositionFromSeed(int seed, int size){
+		Random ran = new Random(seed);
+		int pos;
+		do{
+			pos = ran.nextInt(size);
+		}while(listRandomPosition.contains(pos));
+		listRandomPosition.add(pos);
+		return pos;
+	}
+	
+	// return an integer that represent the key to get random position
+	public int getKeySeed(String key){
+		int result = 0;
+		int i = 0;
+		while(i < key.length()){
+			result += (int) key.charAt(i);
+			i++;
+		}
+		return result;
 	}
 	
 }
