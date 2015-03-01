@@ -549,7 +549,7 @@ public class Intfc extends javax.swing.JFrame {
             try {
                 String filename = jLabel1.getText();
                 String infile = jLabel2.getText();
-				String key = jTextField1.getText();
+                String key = jTextField1.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
                 infile = infile.replace("\\", "\\\\").substring(13);
                 pvd9 = new PVD9(filename,infile);

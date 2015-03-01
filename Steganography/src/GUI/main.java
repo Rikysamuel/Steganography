@@ -23,24 +23,16 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-//        PVD9 p = new PVD9("D:\\tes\\boat.bmp","D:\\tes\\infile.txt");
+        PVD9 p = new PVD9("D:\\tes\\boat.bmp","D:\\tes\\infile.txt");
 //        Common com = new Common("D:\\tes\\result.bmp");
 //        if (p.initProcess()>0){
 //            System.out.println(p.initProcess());
 //            p.hideMsg();
 //            p.Flush("D:\\tes\\result.bmp");
 //            System.out.println(p.extractMsg());
-        VigenereCipher vc = new VigenereCipher();
-        vc.setStr(vc.FileReader("D:\\tes\\infile.txt"));
-        vc.setKey("RIKY");
-        vc.genKey();
-        vc.processExtended();
-        System.out.println(vc.getEncStr());
-        
-        vc.setStr(vc.getEncStr());
-        vc.setKey("RIKY");
-        vc.genKey();
-        vc.processDecExtended();
-        System.out.println(vc.getEncStr());
+
+        String temp = p.encrypt("nama saya rikysamuel", "riky");
+        System.out.println(temp);
+        System.out.println(p.decrypt(temp, "riky"));
     }
 }

@@ -15,6 +15,7 @@ import static java.lang.Math.log10;
 import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
+import vigenerecipher.VigenereCipher;
 
 /**
  *
@@ -424,6 +425,26 @@ public class PVD9 {
         double rms = pow(diff/(9*com.height*com.width),0.5);
         result = 20 * log10(256/rms);
         return result;
+    }
+    
+    public String encrypt(String text, String key){
+        VigenereCipher vc = new VigenereCipher();
+        vc.setStr(text);
+        vc.setKey(key);
+        vc.genKey();
+//        vc.encSpace5();
+        vc.processExtended();
+        return vc.getEncStr();
+    }
+    
+    public String decrypt(String text, String key){
+        VigenereCipher vc = new VigenereCipher();
+        vc.setStr(text);
+        vc.setKey(key);
+        vc.genKey();
+        vc.processDecExtended();
+//        vc.encSpace5();
+        return vc.getEncStr();
     }
     
     public void tes(int iOffset, int jOffset){
