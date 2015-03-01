@@ -6,6 +6,7 @@
 package GUI;
 
 import LSBMethod.PVD9;
+import LSBMethod.PVD4;
 import LSBMethod.Standard;
 import java.awt.Image;
 import java.io.ByteArrayInputStream;
@@ -21,6 +22,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import vigenerecipher.VigenereCipher;
 
 /**
  *
@@ -29,6 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Intfc extends javax.swing.JFrame {
 
     PVD9 pvd9;
+	PVD4 pvd4;
     
     /**
      * Creates new form Intfc
@@ -469,9 +472,9 @@ public class Intfc extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
+	
+	// get cover image path file
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
         String sb = "";
         String fullPath = "";
@@ -494,9 +497,9 @@ public class Intfc extends javax.swing.JFrame {
                     this.jLabel1.setText("Cover image : "+fullPath);
         }
     }//GEN-LAST:event_jButton2MouseClicked
-
+	
+	// get input file path
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
         String sb = "";
         String fullPath = "";
@@ -515,22 +518,35 @@ public class Intfc extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jPanel1MouseClicked
-
+	
+	// hide message to cover image
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(buttonGroup1.isSelected(jRadioButton3.getModel())){
+        if(buttonGroup1.isSelected(jRadioButton2.getModel())){ // PVD4
+			try {
+                String filename = jLabel1.getText(); //image
+                String infile = jLabel2.getText();	//plainteks
+				String key = jTextField1.getText();
+                filename = filename.replace("\\", "\\\\").substring(14);
+                infile = infile.replace("\\", "\\\\").substring(13);
+                pvd4 = new PVD4(filename);
+                pvd4.process("hide",key,infile);
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+		} else if(buttonGroup1.isSelected(jRadioButton3.getModel())){
             try {
                 String filename = jLabel1.getText();
                 String infile = jLabel2.getText();
+				String key = jTextField1.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
                 infile = infile.replace("\\", "\\\\").substring(13);
-                pvd9 = new PVD9(filename,infile);
+                pvd9 = new PVD9(filename,infile,key);
                 pvd9.hideMsg();
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else{
             try {
-            // TODO add your handling code here:
                 this.std = new Standard(fileImg, filePT, "", jTextField1.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
@@ -558,7 +574,8 @@ public class Intfc extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1MouseClicked
-
+	
+	// save stego image
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
         JFileChooser jf = new JFileChooser();
@@ -570,7 +587,13 @@ public class Intfc extends javax.swing.JFrame {
             File savedFile = jf.getSelectedFile();
             nf += savedFile.getAbsolutePath();
             nf += ".bmp";
-            if (buttonGroup1.isSelected(jRadioButton3.getModel())){
+            if (buttonGroup1.isSelected(jRadioButton2.getModel())){
+                try {
+                    pvd4.Flush(nf);
+                } catch (IOException ex) {
+                    Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (buttonGroup1.isSelected(jRadioButton3.getModel())){
                 try {
                     pvd9.Flush(nf);
                 } catch (IOException ex) {
@@ -592,7 +615,6 @@ public class Intfc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
         //hanya menampilkan stego image ke window, belum membuat objek Standard
         JFileChooser fc = new JFileChooser();
         String sb = "";
@@ -616,14 +638,27 @@ public class Intfc extends javax.swing.JFrame {
                     this.jLabel6.setText("Stego image : "+fullPath);
         }
     }//GEN-LAST:event_jButton4MouseClicked
-
+	
+	// Extract message from stego image
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        if (buttonGroup2.isSelected(jRadioButton6.getModel())){
+        if(buttonGroup2.isSelected(jRadioButton5.getModel())){ // PV4
+			try {
+                String filename = jLabel6.getText();
+                filename = filename.replace("\\", "\\\\").substring(14);
+				String key = jTextField1.getText();
+                pvd4 = new PVD4(filename);
+				pvd4.process("extract",key,"");
+                jTextArea1.setText(pvd4.getPlainTeks());
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+		}else if (buttonGroup2.isSelected(jRadioButton6.getModel())){
             try {
                 String filename = jLabel6.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
                 System.out.println(filename);
-                pvd9 = new PVD9(filename,"");
+				String key = jTextField1.getText();
+                pvd9 = new PVD9(filename,"",key);
                 jTextArea1.setText(pvd9.extractMsg());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
