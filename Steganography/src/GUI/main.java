@@ -6,16 +6,10 @@
 
 package GUI;
 
-import LSBMethod.PVD4;
 import LSBMethod.PVD9;
 import common.Common;
-import common.PlainText;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import static java.lang.Math.pow;
-import java.util.ArrayList;
-import java.util.List;
-import vigenerecipher.VigenereCipher;
 
 /**
  *
@@ -29,15 +23,22 @@ public class main {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         PVD9 p = new PVD9("D:\\tes\\boat.bmp","D:\\tes\\infile.txt");
-        int temp = p.initProcess();
-//        temp = -1;
+        Common com = new Common("D:\\tes\\result.bmp");
+//        int temp = p.initProcess();
+////        temp = -1;
         if (p.initProcess()>0){
             System.out.println(p.initProcess());
             p.hideMsg();
-            p.Flush("D:\\tes\\outfile.bmp");
-            System.out.println(p.countPSNR());
-            System.out.println(p.extractMsg());
+            p.Flush("D:\\tes\\result.bmp");
+//            System.out.println(p.countPSNR());
         }
+        
+//        PVD9 p2 = new PVD9("D:\\tes\\result.bmp","D:\\tes\\infile.txt");
+//        System.out.println(p2.bitDiv8("1010101010101010"));
+//        if(p.initProcess()>0){
+            System.out.println(p.extractMsg());
+//            System.out.println(c.bitToText(p2.bitDiv8(p2.extractMessageFromBlock(0, 0))));
+//        }
 //        PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\plaintext.txt");
 //		Common com = new Common("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
 //		plainteks.setStreamPT();
