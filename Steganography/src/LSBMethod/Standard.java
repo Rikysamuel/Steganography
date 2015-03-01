@@ -10,6 +10,10 @@ import common.Common;
 import common.PlainText;
 import vigenerecipher.VigenereCipher;
 import java.io.IOException;
+import static java.lang.Math.log10;
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+import vigenerecipher.VigenereH;
 
 /**
  *
@@ -23,6 +27,8 @@ public class Standard {
     public Common img;
     public Common stimg;
     public PlainText pt;
+    public double psnrStd;
+    public byte[] unchanged;
     
 
     public Standard(String fimg, String fpt, String fstego, String key) throws IOException {
@@ -60,7 +66,8 @@ public class Standard {
                 ptemp += pt.getBits(pt.streamPT[i]);
             }
             //cek string of bit plainteks
-            System.out.println(ptemp);
+            System.out.println("string of bit plainteks"+ptemp);
+            unchanged = img.stream;
             //masukkan bit plainteks ke byte gambar; mulai dari byte ke 1078
             for (int i = offset; i < ptemp.length()+offset; i++){
                 //versi: cek byte mula-mula dan byte setelah dimasuki bit pesan
@@ -88,6 +95,35 @@ public class Standard {
         }
         //cek string of byte hasil ekstraksi
         System.out.println(ext);
+        VigenereH cip = new VigenereH();
+        cip.setCipher(ext);
+        cip.setKunci(key);
+        cip.decryptExtended();
+        System.out.println(cip.getPesan());
+    }
+    
+    public void countPSNR(){
+        int offset = 1078;
+        int M = img.height;
+        int N = img.width;
+        int MN = (M*N);
+        System.out.println("MN "+MN);
+        System.out.println("N "+N);
+        System.out.println("M "+M);
+        double temp=0;
+        double rms;
+        for(int i = 0 ; i < MN ;i++){
+            String unc = img.getBits(unchanged[i+offset]);
+            String org = img.getBits(img.stream[i+offset]);
+            temp += pow(((img.bitToInteger(unc))-img.bitToInteger(org)),2);
+//            System.out.println(temp);
+        }
+//        System.out.format("%.3f", temp);
+        rms = sqrt((temp/M)/N);
+        System.out.println("rms "+rms);
+        this.psnrStd = (20 * log10(256/rms));
+//        System.out.format("%.3f", this.psnrStd);
+        System.out.println(this.psnrStd);
     }
     
 }

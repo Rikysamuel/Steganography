@@ -11,8 +11,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import vigenerecipher.Vigenere;
 import vigenerecipher.VigenereCipher;
+import vigenerecipher.VigenereH;
+import vigenerecipher.Vigenere;
 
 
 /**
@@ -21,7 +22,7 @@ import vigenerecipher.VigenereCipher;
  */
 public class PlainText {
     private String pt;
-    public VigenereCipher vc;
+    public VigenereH vc;
 //	public Vigenere vc;
     public byte[] streamPT;
     public String ptByte = "";
@@ -30,29 +31,24 @@ public class PlainText {
     public PlainText (String filename, String key) throws IOException{
         Path filein = Paths.get(filename);
         this.key = key;
-        vc = new VigenereCipher();
-        String temp = vc.FileReader(filename);
-        vc.setStr(temp.toUpperCase());
-        vc.setKey(key.toUpperCase());
-        vc.genKey();
-        temp = vc.processExtended();
-//		String temp;
-//		vc = new Vigenere();
-//		vc.encryptFile(filename, key);
-//		vc.encryptVigenereCipherExtended();
-//		temp = vc.getCiphertext();
-//		System.out.println(vc.getCiphertext());
-//		System.out.println(temp);
-        streamPT = temp.getBytes(Charset.forName("UTF-8"));
-		System.out.println("-finished construct PlainText-");
+        vc = new VigenereH();
+        String temp = vc.readFile(filename);
+        vc.setPesan(temp);
+        vc.setKunci(key);
+//        vc.genKey();
+        vc.encryptExtended();
+        //cek
+        System.out.println("cek hasil vigenere"+ vc.getCipher());
+        streamPT = vc.getCipher().getBytes();
+
     }
     
 	public String getPlaintextAfterDecrypt(String cipher){
 		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
 		String plaintext="";
-		vc.setStr(cipher.toUpperCase());
+		vc.setPesan(cipher.toUpperCase());
 		System.out.println(cipher);
-		vc.setKey(key.toUpperCase());
+		vc.setKunci(key.toUpperCase());
 		System.out.println(key);
 		vc.genKey();
 		plaintext = vc.processDecExtended();
@@ -77,5 +73,9 @@ public class PlainText {
     
     public String getBits(byte b){
         return String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
+    }
+    
+    public void decrypt(){
+        vc.decryptExtended();
     }
 }
