@@ -22,12 +22,8 @@ import vigenerecipher.vigenere;
  */
 public class PlainText {
     private String pt;
-<<<<<<< HEAD
     public vigenere vc;
-=======
-    public VigenereCipher vc;
 //	public Vigenere vc;
->>>>>>> 8ccb2913625bda5a194e96d82aa6598fb38cec97
     public byte[] streamPT;
     public String ptByte = "";
     public String key;
@@ -35,7 +31,6 @@ public class PlainText {
     public PlainText (String filename, String key) throws IOException{
         Path filein = Paths.get(filename);
         this.key = key;
-<<<<<<< HEAD
         vc = new vigenere();
         String temp = vc.readFile(filename);
         vc.setPesan(temp);
@@ -45,23 +40,7 @@ public class PlainText {
         //cek
         System.out.println("cek hasil vigenere"+ vc.getCipher());
         streamPT = vc.getCipher().getBytes();
-=======
-        vc = new VigenereCipher();
-        String temp = vc.FileReader(filename);
-        vc.setStr(temp.toUpperCase());
-        vc.setKey(key.toUpperCase());
-        vc.genKey();
-        temp = vc.processExtended();
-//		String temp;
-//		vc = new Vigenere();
-//		vc.encryptFile(filename, key);
-//		vc.encryptVigenereCipherExtended();
-//		temp = vc.getCiphertext();
-//		System.out.println(vc.getCiphertext());
-//		System.out.println(temp);
-        streamPT = temp.getBytes(Charset.forName("UTF-8"));
-		System.out.println("-finished construct PlainText-");
->>>>>>> 8ccb2913625bda5a194e96d82aa6598fb38cec97
+
     }
     
 	public String getPlaintextAfterDecrypt(String cipher){
