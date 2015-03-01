@@ -12,6 +12,7 @@ import common.Common;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import common.PlainText;
+import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -33,9 +34,7 @@ public class main {
 //		plainteks.setStreamPT();
 //		System.out.println(plainteks.ptByte);
 		
-		for(Integer i: com.randomSeed(100,9)){
-			System.out.println(i);
-		}
+		
 //		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes4.bmp");
 //		temp.process("hide","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
 //		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");

@@ -7,6 +7,7 @@
 package common;
 
 import java.io.IOException;
+import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
 /**
@@ -134,10 +135,10 @@ public class Block4 {
 		return (getLevel(y1).equals(getLevel(y2)));
 	}
 	
-	private int abs(int a){
-		if(a<0)	a = a * -1;
-		return a;
-	}
+//	private int abs(int a){
+//		if(a<0)	a = a * -1;
+//		return a;
+//	}
 	
 	private void modifiedLSBSubstitution(){
 		System.out.println("--MODIFIED--");
