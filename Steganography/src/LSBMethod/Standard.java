@@ -39,7 +39,7 @@ public class Standard {
         if (filenameImg != "" && filenamePT != "" && key != ""){
             this.img = new Common(filenameImg);
             img.writeToByte(filenameImg);
-            this.pt = new PlainText(filenamePT,key);
+            this.pt = new PlainText(filenamePT);
             pt.setStreamPT();
         } else {
             //untuk mode ekstraksi

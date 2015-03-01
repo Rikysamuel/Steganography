@@ -22,39 +22,29 @@ import vigenerecipher.VigenereH;
  */
 public class PlainText {
     private String pt;
-    public VigenereH vc;
 //	public Vigenere vc;
     public byte[] streamPT;
     public String ptByte = "";
-    public String key;
+//    public String key;
     
-    public PlainText (String filename, String key) throws IOException{
+    public PlainText (String filename) throws IOException{
         Path filein = Paths.get(filename);
-        this.key = key;
-        vc = new VigenereH();
-        String temp = vc.readFile(filename);
-        vc.setPesan(temp);
-        vc.setKunci(key);
-//        vc.genKey();
-        vc.encryptExtended();
-        //cek
-        System.out.println("cek hasil vigenere"+ vc.getCipher());
-        streamPT = vc.getCipher().getBytes();
-
+        streamPT = Files.readAllBytes(filein);// temp.getBytes(Charset.forName("UTF-8"));
+		System.out.println("-finished construct PlainText-");
     }
     
-	public String getPlaintextAfterDecrypt(String cipher){
-		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
-		String plaintext="";
-		vc.setPesan(cipher.toUpperCase());
-		System.out.println(cipher);
-		vc.setKunci(key.toUpperCase());
-		System.out.println(key);
+//	public String getPlaintextAfterDecrypt(String cipher){
+//		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
+//		String plaintext="";
+//		vc.setStr(cipher.toUpperCase());
+//		System.out.println(cipher);
+//		vc.setKey(key.toUpperCase());
+//		System.out.println(key);
 //		vc.genKey();
 //		plaintext = vc.processDecExtended();
-		System.out.println(plaintext);
-		return plaintext;
-	}
+//		System.out.println(plaintext);
+//		return plaintext;
+//	}
 	
     public void setPt(String s){
         this.pt = s;
@@ -74,8 +64,8 @@ public class PlainText {
     public String getBits(byte b){
         return String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
     }
-    
-    public void decrypt(){
-        vc.decryptExtended();
-    }
+//    
+//    public void decrypt(){
+//        vc.decryptExtended();
+//    }
 }

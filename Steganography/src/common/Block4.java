@@ -22,6 +22,7 @@ public class Block4 {
 	int T, k;
 	String level, plainteks;
     
+	// constructor
     public Block4(String tempfile) throws IOException{
 		com = new Common(tempfile);
 		y = new int[4];
@@ -31,48 +32,44 @@ public class Block4 {
 		
     }
     
+	// Inisialization of one block
     public void initBlock(int color, int keyLower, int keyHigher, int threshold){
 		T = threshold;
-		// gimana nentuin T
 		setLevel();
-		// gimana nentuin klower khigher
 		setK(keyLower,keyHigher);
-        
     }
 	
-	/** DECRPYT **/
+	/** EXTRACT **/
+	
+	// extract the message from stego image
 	public String decrypt(int color, int keyLower, int keyHigher, int threshold, String result){
 		initBlock(color,keyLower,keyHigher,threshold);
 		
 		for(int i=0;i<=3;i++){
-		//	System.out.println("y["+i+"]="+y[i]);
 			result += com.integerToBit(y[i]).substring(8-k);
 		}
 		
 		return result;
 	}
 	
-	/** ENCRYPT **/
+	/** HIDE **/
+	
+	// Inisialization for y initial
 	public void initY(int pos, int val){
 		y[pos] = val;
 	}
 	
+	// Get the final y
 	public int getYfinal(int pos){
 		return yc[pos];
 	}
 	
-	private String make8bit(String bit){
-		while(bit.length()<8){
-			bit = '0' + bit;
-		}
-		return bit;
-	}
-	
+	// Hide the message in cover image
 	public String encrypt(int color, int keyLower, int keyHigher, int threshold, String plain){
 		plainteks = plain;
 		initBlock(color,keyLower,keyHigher,threshold);
 		
-		if(!isErrorBlock(y)){
+		if(!isErrorBlock(y)){ // not Error Block
 			commonLSBSubstitution();			
 			modifiedLSBSubstitution();
 			readjustingProcedure();
@@ -84,9 +81,8 @@ public class Block4 {
 		}
 		return plainteks;
 	}
-
 	
-	
+	// readjusting procedure
 	private void readjustingProcedure(){
 		System.out.println("--READJUSTING--");
 		
@@ -106,7 +102,9 @@ public class Block4 {
 					for(int l3=-1;l3<=1;l3++){
 						yTemp[3] = countReadjusting(3,l3);
 				
+						// not error block and same level with initial
 						if(!isErrorBlock(yTemp) && isSameLevel(y,yTemp)){
+							// find the minimum of the value
 							if(min > sumValue(yTemp)){
 								min = sumValue(yTemp);
 								for(int i=0;i<=3;i++)
@@ -119,6 +117,7 @@ public class Block4 {
 		}
 	}
 	
+	// the value of the difference between y initial and yt
 	private int sumValue(int[] yt){
 		int temp = 0;
 		for(int i=0;i<=3;i++){
@@ -127,60 +126,58 @@ public class Block4 {
 		return temp;
 	}
 	
+	// the formula in readjusting procedure
 	private int countReadjusting(int pos, int l){
 		return (yb[pos] + l * (int)pow(2,k));
 	}
 	
+	// return true if y1 and y2 is in the same level
 	private boolean isSameLevel(int[] y1, int[] y2){
 		return (getLevel(y1).equals(getLevel(y2)));
 	}
 	
-//	private int abs(int a){
-//		if(a<0)	a = a * -1;
-//		return a;
-//	}
-	
+	// modified LSB Substitution
 	private void modifiedLSBSubstitution(){
 		System.out.println("--MODIFIED--");
-		
 		
 		int min, temp;
 		String message, MSB, cipher;
 	
-		for(int i=0;i<=3;i++){
+		for(int i=0;i<=3;i++){ // for each y
 			min = abs(ya[i]-y[i]);
 			yb[i] = ya[i];
 			
 			message = com.integerToBit(yb[i]).substring(8-k);
 			MSB = com.integerToBit(yb[i]).substring(0,8-k);
 			
-//			System.out.println(message);
-//			System.out.println(MSB);
-			
-			for(int j=-1;j<=1;j=j+2){
+			for(int j=-1;j<=1;j=j+2){ 
 				temp = com.bitToInteger(MSB) + j;
 				cipher = com.integerToBit(temp) + message;
-//				System.out.println(cipher);
 				if(min > abs(com.bitToInteger(cipher)-y[i]))
 					yb[i] = com.bitToInteger(cipher);
 			}
 		}
 	}
 	
+	// common LSB Substitution
 	private void commonLSBSubstitution(){
 		System.out.println("--COMMONSUBS--");
 		String temp = "";
 		for(int i=0;i<=3;i++){
-//			System.out.println("plainteks="+plainteks);
-//			System.out.println(y[i]);
 			System.out.println(com.integerToBit(y[i]));
 			temp = com.integerToBit(y[i]).substring(0,8-k);
-//			System.out.println("After substring from y");
-			ya[i] = com.bitToInteger(temp+plainteks.substring(0,k));
+			System.out.println(plainteks);
+			System.out.println(plainteks.substring(0,k));
+			if(plainteks.length()<k){
+				ya[i] = com.bitToInteger(temp+plainteks);
+			} else {
+				ya[i] = com.bitToInteger(temp+plainteks.substring(0,k));
+			}
 			plainteks = plainteks.substring(k);
 		}
 	}
 	
+	// set the key based on the level of block
 	// must done after setLevel
 	private void setK(int keyLower, int keyHigher){
 		if (level.equals("lower"))
@@ -189,6 +186,7 @@ public class Block4 {
 			k = keyHigher;
 	}
 	
+	// set the level of block based on D and T
 	private void setLevel(){
 		if(getD(y) <= T)
 			level = "lower";
@@ -196,6 +194,7 @@ public class Block4 {
 			level = "higher";
 	}
 	
+	// Get the maximum of yt
 	private int getYmax(int[] yt){
 		int max = -1;
 		for(int i = 0;i<=3;i++){
@@ -206,6 +205,7 @@ public class Block4 {
 		return max;
 	}
 	
+	// Get the minimum of yt
 	private int getYmin(int[] yt){
 		int min = 256;
 		for(int i = 0;i<=3;i++){
@@ -216,6 +216,7 @@ public class Block4 {
 		return min;
 	}
 	
+	// Get the average difference value (D) of yt
 	private float getD(int[] yt){
 		float temp = 0;
 		for(int i=0;i<=3;i++){
@@ -224,10 +225,12 @@ public class Block4 {
 		return (temp/3);
 	}
 	
+	// return true if the block is an error block
 	private boolean isErrorBlock(int[] yt){
 		return ((getYmax(yt)-getYmin(yt) > 2*T+2) && (getD(yt) <= T));
 	}
 	
+	// Get the level of the block
 	private String getLevel(int[] yt){
 		if(getD(yt) <= T) 
 			return "lower";
