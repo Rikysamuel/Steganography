@@ -3,42 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            <file>file:/E:/OneDrive/Data%20Semester%206/Kriptografi/Tubes%201%20-%20Steganography/Steganography/src/GUI/main.java</file>
-            <file>file:/E:/OneDrive/Data%20Semester%206/Kriptografi/Tubes%201%20-%20Steganography/Steganography/src/common/Block9.java</file>
-            <file>file:/E:/OneDrive/Data%20Semester%206/Kriptografi/Tubes%201%20-%20Steganography/Steganography/src/GUI/Intfc.java</file>
-            <file>file:/E:/OneDrive/Data%20Semester%206/Kriptografi/Tubes%201%20-%20Steganography/Steganography/src/LSBMethod/PVD9.java</file>
-            <file>file:/E:/OneDrive/Data%20Semester%206/Kriptografi/Tubes%201%20-%20Steganography/Steganography/src/common/PlainText.java</file>
-            <file>file:/E:/OneDrive/Data%20Semester%206/Kriptografi/Tubes%201%20-%20Steganography/Steganography/src/LSBMethod/PVD4.java</file>
-=======
-<<<<<<< HEAD
->>>>>>> ef0d922fc01a1edd15037cbaab513030b911fc3c
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/GUI/main.java</file>
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/common/PlainText.java</file>
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/LSBMethod/PVD4.java</file>
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/common/Block4.java</file>
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/LSBMethod/Standard.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/vigenerecipher/VigenereCipher.java</file>
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/common/Common.java</file>
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/common/Block9.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/BMPFile.java</file>
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/LSBMethod/PVD9.java</file>
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/common/PixelPos.java</file>
-<<<<<<< HEAD
             <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/Kripto/Steganography/Steganography/src/GUI/Intfc.java</file>
-=======
-=======
-            <file>file:/D:/%5B6%5D/IF4020%20Kripto/Tubes%201/Steganography/Steganography/src/GUI/Intfc.java</file>
-            <file>file:/D:/%5B6%5D/IF4020%20Kripto/Tubes%201/Steganography/Steganography/src/LSBMethod/Standard.java</file>
-            <file>file:/D:/%5B6%5D/IF4020%20Kripto/Tubes%201/Steganography/Steganography/src/common/Common.java</file>
-<<<<<<< HEAD
-            <file>file:/D:/%5B6%5D/IF4020%20Kripto/Tubes%201/Steganography/Steganography/src/common/PlainText.java</file>
-            <file>file:/D:/%5B6%5D/IF4020%20Kripto/Tubes%201/Steganography/Steganography/src/GUI/main.java</file>
-=======
->>>>>>> 53effcd32b32d783d1cedd6e112081aa5d0c71c4
->>>>>>> a502be229f5084b062150dd4ebfe2a6c74588aa2
->>>>>>> 3305d91ddaa73a13492e27d7df1f3eeaed9cd51e
->>>>>>> ef0d922fc01a1edd15037cbaab513030b911fc3c
         </group>
     </open-files>
 </project-private>

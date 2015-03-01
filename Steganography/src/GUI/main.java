@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
+import vigenerecipher.VigenereCipher;
 
 /**
  *
@@ -32,14 +33,27 @@ public class main {
 //		plainteks.setStreamPT();
 //		System.out.println(plainteks.ptByte);
 		
+//		System.out.println("woi");
+//		VigenereCipher vc = new VigenereCipher();
+//		System.out.println(vc.FileReader("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt"));
+		//System.out.println(vc.processExtended());
 		
-//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes4.bmp");
-//		temp.process("hide","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
-//		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");
+//		List<Integer> listTemp = new ArrayList<>();
+//		System.out.println(com.getKeySeed("STEGANO"));
+//		listTemp = com.randomSeed(com.getKeySeed("STEGANO"),9);
+//		for(Integer i:listTemp){
+//			System.out.println(i);
+//		}
+//		for(int i =0;i<=8;i++){
+//			System.out.println(com.randomPositionFromSeed(100, 9));
+//		}
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\cameraman (1).bmp");
+//		temp.process("hide","STEGANO","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+//		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result5.bmp");
 
-//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");
-//		temp.process("extract","");
-//		System.out.println(temp.getPlainTeks());
+		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result5.bmp");
+		temp.process("extract","STEGANO","");
+		System.out.println(temp.getPlainTeks());
 		
 //		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
     }
