@@ -13,7 +13,7 @@ import java.io.IOException;
 import static java.lang.Math.log10;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
-import vigenerecipher.vigenere;
+import vigenerecipher.VigenereH;
 
 /**
  *
@@ -95,7 +95,7 @@ public class Standard {
         }
         //cek string of byte hasil ekstraksi
         System.out.println(ext);
-        vigenere cip = new vigenere();
+        VigenereH cip = new VigenereH();
         cip.setCipher(ext);
         cip.setKunci(key);
         cip.decryptExtended();

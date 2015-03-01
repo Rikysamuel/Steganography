@@ -11,9 +11,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import vigenerecipher.Vigenere;
 import vigenerecipher.VigenereCipher;
-import vigenerecipher.vigenere;
+import vigenerecipher.VigenereH;
 
 
 /**
@@ -22,7 +21,7 @@ import vigenerecipher.vigenere;
  */
 public class PlainText {
     private String pt;
-    public vigenere vc;
+    public VigenereH vc;
 //	public Vigenere vc;
     public byte[] streamPT;
     public String ptByte = "";
@@ -31,7 +30,7 @@ public class PlainText {
     public PlainText (String filename, String key) throws IOException{
         Path filein = Paths.get(filename);
         this.key = key;
-        vc = new vigenere();
+        vc = new VigenereH();
         String temp = vc.readFile(filename);
         vc.setPesan(temp);
         vc.setKunci(key);
@@ -43,18 +42,18 @@ public class PlainText {
 
     }
     
-	public String getPlaintextAfterDecrypt(String cipher){
-		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
-		String plaintext="";
-		vc.setStr(cipher.toUpperCase());
-		System.out.println(cipher);
-		vc.setKey(key.toUpperCase());
-		System.out.println(key);
-		vc.genKey();
-		plaintext = vc.processDecExtended();
-		System.out.println(plaintext);
-		return plaintext;
-	}
+//	public String getPlaintextAfterDecrypt(String cipher){
+//		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
+//		String plaintext="";
+//		vc.setPesan(cipher.toUpperCase());
+//		System.out.println(cipher);
+//		vc.setKunci(key.toUpperCase());
+//		System.out.println(key);
+//		vc.genKey();
+//		plaintext = vc.processDecExtended();
+//		System.out.println(plaintext);
+//		return plaintext;
+//	}
 	
     public void setPt(String s){
         this.pt = s;
