@@ -11,6 +11,8 @@ import common.Common;
 import common.PixelPos;
 import common.PlainText;
 import java.io.IOException;
+import static java.lang.Math.log10;
+import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +31,13 @@ public class PVD9 {
     private int pointer;
     private int pointerres;
     private int maxData;
+    private double diff;
     private List<Integer> random;
     
-    public PVD9(String filename, String textfile, String key) throws IOException{
+    public PVD9(String filename, String textfile) throws IOException{
         com = new Common(filename);
         if (!textfile.equals("")){
-            pt = new PlainText(textfile,key);
+            pt = new PlainText(textfile);
             pt.setStreamPT();
             text = pt.ptByte;
             System.out.println(text);
@@ -59,8 +62,7 @@ public class PVD9 {
         if (width%3!=0){
             width = (width/3)*3;
         }
-        random = com.randomSeed(seed, height*width);
-        System.out.println(initProcess(seed));
+//        random = com.randomSeed(seed, height*width);
         height = height/3;
         width = width/3;
         maxData = width * height * 3 * 9 * 2; // 
@@ -89,6 +91,7 @@ public class PVD9 {
             while (pointer<text.length() && it < rule[0]){
                 temp = bit8(com.integerToBit(com.redPix[iOffset][jOffset])).toCharArray();
                 temp[7-it] = text.charAt(pointer);
+                countDifferent(com.getIntegerPixel(1, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
                 com.editPixel(1, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
                 it++; pointer++;
             }
@@ -97,6 +100,7 @@ public class PVD9 {
             while (pointer<text.length() && it < rule[1]){
                 temp = bit8(com.integerToBit(com.greenPix[iOffset][jOffset])).toCharArray();
                 temp[7-it] = text.charAt(pointer);
+                countDifferent(com.getIntegerPixel(2, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
                 com.editPixel(2, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
                 it++; pointer++;
             }
@@ -105,6 +109,7 @@ public class PVD9 {
             while (pointer<text.length() && it < rule[2]){
                 temp = bit8(com.integerToBit(com.bluePix[iOffset][jOffset])).toCharArray();
                 temp[7-it] = text.charAt(pointer);
+                countDifferent(com.getIntegerPixel(3, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
                 com.editPixel(3, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
                 it++; pointer++;
             }
@@ -124,6 +129,7 @@ public class PVD9 {
         temp = bit8(com.integerToBit(com.redPix[iOffset][jOffset])).toCharArray();
         if (rule[0]==2){
             temp[6] = '0'; temp[7]='0';
+            countDifferent(com.getIntegerPixel(1, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(1, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
         if (rule[0]==3){
@@ -131,6 +137,7 @@ public class PVD9 {
             if (pointer<text.length() && it < rule[0]){
                 temp[5] = text.charAt(pointer); pointer++;
             }
+            countDifferent(com.getIntegerPixel(1, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(1, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
         if (rule[0]==4){
@@ -139,6 +146,7 @@ public class PVD9 {
                 temp[5] = text.charAt(pointer); pointer++;
                 temp[4] = text.charAt(pointer); pointer++;
             }
+            countDifferent(com.getIntegerPixel(1, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(1, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
         if (rule[0]==5){
@@ -148,6 +156,7 @@ public class PVD9 {
                 temp[4-it] = text.charAt(pointer); pointer++;
                 temp[3-it] = text.charAt(pointer); pointer++;
             }
+            countDifferent(com.getIntegerPixel(1, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(1, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
 
         }
@@ -157,6 +166,7 @@ public class PVD9 {
         it = 0;
         if (rule[1]==2){
             temp[6] = '0'; temp[7]='0';
+            countDifferent(com.getIntegerPixel(2, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(2, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
         if (rule[1]==3){
@@ -164,6 +174,7 @@ public class PVD9 {
             if (pointer<text.length() && it < rule[1]){
                 temp[5] = text.charAt(pointer); pointer++;
             }
+            countDifferent(com.getIntegerPixel(2, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(2, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
         if (rule[1]==4){
@@ -172,6 +183,7 @@ public class PVD9 {
                 temp[5] = text.charAt(pointer); pointer++;
                 temp[4] = text.charAt(pointer); pointer++;
             }
+            countDifferent(com.getIntegerPixel(2, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(2, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
         if (rule[1]==5){
@@ -181,6 +193,7 @@ public class PVD9 {
                 temp[4-it] = text.charAt(pointer); pointer++;
                 temp[3-it] = text.charAt(pointer); pointer++;
             }
+            countDifferent(com.getIntegerPixel(2, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(2, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
        
@@ -188,6 +201,7 @@ public class PVD9 {
         temp = bit8(com.integerToBit(com.bluePix[iOffset][jOffset])).toCharArray();
         if (rule[2]==2){
             temp[6] = '0'; temp[7]='0';
+            countDifferent(com.getIntegerPixel(3, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(3, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
         if (rule[2]==3){
@@ -195,6 +209,7 @@ public class PVD9 {
             if (pointer<text.length() && it < rule[2]){
                 temp[5] = text.charAt(pointer); pointer++;
             }
+            countDifferent(com.getIntegerPixel(3, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(3, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
         if (rule[2]==4){
@@ -211,6 +226,7 @@ public class PVD9 {
                 temp[4-it] = text.charAt(pointer); pointer++;
                 temp[3-it] = text.charAt(pointer); pointer++;
             }
+            countDifferent(com.getIntegerPixel(3, p.getI(), p.getJ()),com.bitToInteger(String.valueOf(temp)));
             com.editPixel(3, p.getI(), p.getJ(), com.bitToInteger(String.valueOf(temp)));
         }
     }
@@ -400,6 +416,17 @@ public class PVD9 {
             width = (width/3)*3;
         }
         return (pos % width) * 2;
+    }
+    
+    private void countDifferent(int yInitial, int yFinal){
+        diff += pow(yInitial-yFinal,2);
+    }
+	
+    public double countPSNR(){
+        double result = 0.0;
+        double rms = pow(diff/(9*com.height*com.width),0.5);
+        result = 20 * log10(256/rms);
+        return result;
     }
     
     public void tes(int iOffset, int jOffset){
