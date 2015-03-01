@@ -11,8 +11,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import vigenerecipher.Vigenere;
 import vigenerecipher.VigenereCipher;
+import vigenerecipher.VigenereH;
+//import vigenerecipher.Vigenere;
 
 
 /**
@@ -21,7 +22,6 @@ import vigenerecipher.VigenereCipher;
  */
 public class PlainText {
     private String pt;
-//    public VigenereCipher vc;
 //	public Vigenere vc;
     public byte[] streamPT;
     public String ptByte = "";
@@ -29,20 +29,6 @@ public class PlainText {
     
     public PlainText (String filename) throws IOException{
         Path filein = Paths.get(filename);
-//        this.key = key;
-//        vc = new VigenereCipher();
-//        String temp = vc.FileReader(filename);
-//        vc.setStr(temp.toUpperCase());
-//        vc.setKey(key.toUpperCase());
-//        vc.genKey();
-//        temp = vc.processExtended();
-//		String temp;
-//		vc = new Vigenere();
-//		vc.encryptFile(filename, key);
-//		vc.encryptVigenereCipherExtended();
-//		temp = vc.getCiphertext();
-//		System.out.println(vc.getCiphertext());
-//		System.out.println(temp);
         streamPT = Files.readAllBytes(filein);// temp.getBytes(Charset.forName("UTF-8"));
 		System.out.println("-finished construct PlainText-");
     }
@@ -78,4 +64,8 @@ public class PlainText {
     public String getBits(byte b){
         return String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
     }
+//    
+//    public void decrypt(){
+//        vc.decryptExtended();
+//    }
 }
