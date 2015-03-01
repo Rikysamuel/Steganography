@@ -21,21 +21,21 @@ import vigenerecipher.VigenereCipher;
  */
 public class PlainText {
     private String pt;
-    public VigenereCipher vc;
+//    public VigenereCipher vc;
 //	public Vigenere vc;
     public byte[] streamPT;
     public String ptByte = "";
-    public String key;
+//    public String key;
     
-    public PlainText (String filename, String key) throws IOException{
+    public PlainText (String filename) throws IOException{
         Path filein = Paths.get(filename);
-        this.key = key;
-        vc = new VigenereCipher();
-        String temp = vc.FileReader(filename);
-        vc.setStr(temp.toUpperCase());
-        vc.setKey(key.toUpperCase());
-        vc.genKey();
-        temp = vc.processExtended();
+//        this.key = key;
+//        vc = new VigenereCipher();
+//        String temp = vc.FileReader(filename);
+//        vc.setStr(temp.toUpperCase());
+//        vc.setKey(key.toUpperCase());
+//        vc.genKey();
+//        temp = vc.processExtended();
 //		String temp;
 //		vc = new Vigenere();
 //		vc.encryptFile(filename, key);
@@ -43,22 +43,22 @@ public class PlainText {
 //		temp = vc.getCiphertext();
 //		System.out.println(vc.getCiphertext());
 //		System.out.println(temp);
-        streamPT = temp.getBytes(Charset.forName("UTF-8"));
+        streamPT = Files.readAllBytes(filein);// temp.getBytes(Charset.forName("UTF-8"));
 		System.out.println("-finished construct PlainText-");
     }
     
-	public String getPlaintextAfterDecrypt(String cipher){
-		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
-		String plaintext="";
-		vc.setStr(cipher.toUpperCase());
-		System.out.println(cipher);
-		vc.setKey(key.toUpperCase());
-		System.out.println(key);
-		vc.genKey();
-		plaintext = vc.processDecExtended();
-		System.out.println(plaintext);
-		return plaintext;
-	}
+//	public String getPlaintextAfterDecrypt(String cipher){
+//		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
+//		String plaintext="";
+//		vc.setStr(cipher.toUpperCase());
+//		System.out.println(cipher);
+//		vc.setKey(key.toUpperCase());
+//		System.out.println(key);
+//		vc.genKey();
+//		plaintext = vc.processDecExtended();
+//		System.out.println(plaintext);
+//		return plaintext;
+//	}
 	
     public void setPt(String s){
         this.pt = s;
