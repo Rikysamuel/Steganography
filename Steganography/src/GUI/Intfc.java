@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -318,7 +320,7 @@ public class Intfc extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6))
                     .addComponent(panelForStego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Penyisipan", jPanel1);
@@ -327,6 +329,11 @@ public class Intfc extends javax.swing.JFrame {
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -359,6 +366,11 @@ public class Intfc extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton7.setText("Save pesan");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jInternalFrame3.setTitle("Stego Image");
         jInternalFrame3.setVisible(true);
@@ -377,7 +389,7 @@ public class Intfc extends javax.swing.JFrame {
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -550,7 +562,7 @@ public class Intfc extends javax.swing.JFrame {
             }
         } else{
             try {
-                this.std = new Standard(fileImg, filePT, "", this.jTextField1.getText());
+                this.std = new Standard(fileImg, filePT, "");
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -666,35 +678,21 @@ public class Intfc extends javax.swing.JFrame {
             try {
                 // TODO add your handling code here:
                 String ss = "";
-    //            Common stego = new Common(fileStg);
-    //            stego.writeToByte(fileStg);
-                std = new Standard("","",fileStg,"");
-                for(int i=400; i<416; i++){
-                        ss += std.stimg.getBits(std.stimg.stream[i]).charAt(7);
-    //                    System.out.println(stego.getBits(stego.stream[i]));
-                }
-                //cek string of bit pesan yang dihasilkan, sama tidak dengan string of bit pesan asli?
-                System.out.println("value ss: "+ss);
-                String hasil_ext = "";
-                hasil_ext = std.stimg.bitToText(ss);
-                //cek hasil ekstraksi, apakah sama dengan pesan asli?
-                System.out.println("value hasil: "+hasil_ext);
-    //            String[] sbyte = ss.split( " " );
-    //            StringBuilder sb = new StringBuilder();
-    //            for ( int i = 0; i < ss.length(); i+=8 ) { 
-    //                String ascii = ss.substring(i, i+8);
-    //                int temp = Integer.parseInt(ascii,2);
-    //                sb.append( (char)temp );
-    //                System.out.println((char)temp);
-    //            }   
-    //            StringBuilder strb = new StringBuilder();
-    //            for (int i =0; i<ss.length();i+=8){
-    //                strb.append((char)Integer.parseInt(ss.substring(i, i+8), 2));
-    //            }
-    //           
-    //            System.out.println("break "+sb.toString());
-    //            this.jTextArea1.setText(sb.toString());
-    //            System.out.println("Selesai!");
+                std = new Standard("","",fileStg);
+                std.extract();
+                
+//                int offset = 1078;
+//                int count = std.stimg.stream.length - offset;
+//                for(int i=offset; i<count+offset; i++){
+//                        ss += std.stimg.getBits(std.stimg.stream[i]).charAt(7);
+//    //                    System.out.println(stego.getBits(stego.stream[i]));
+//                }
+//                //cek string of bit pesan yang dihasilkan, sama tidak dengan string of bit pesan asli?
+//                System.out.println("value ss: "+ss);
+//                String hasil_ext = "";
+//                hasil_ext = std.stimg.bitToText(ss);
+//                //cek hasil ekstraksi, apakah sama dengan pesan asli?
+//                System.out.println("value hasil: "+hasil_ext);
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -708,6 +706,30 @@ public class Intfc extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.showSaveDialog(this);
+        String filename = fc.getSelectedFile().getAbsolutePath();
+        filename = filename.replace("\\", "\\\\");
+        if(!filename.substring(filename.length()-3).equals("txt")){
+            filename = filename.concat(".txt");
+        }
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(filename,"UTF-8");
+        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+            Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (pw != null){
+            pw.println(jTextArea1.getText());
+            pw.close();
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // return array of bits in a certain byte
     public String getBits(byte b){
