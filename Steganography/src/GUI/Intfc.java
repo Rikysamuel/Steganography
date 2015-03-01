@@ -31,7 +31,7 @@ import vigenerecipher.VigenereCipher;
 public class Intfc extends javax.swing.JFrame {
 
     PVD9 pvd9;
-	PVD4 pvd4;
+    PVD4 pvd4;
     
     /**
      * Creates new form Intfc
@@ -647,29 +647,21 @@ public class Intfc extends javax.swing.JFrame {
 	// Extract message from stego image
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         if(buttonGroup2.isSelected(jRadioButton5.getModel())){ // PV4
-			try {
+            try {
                 String filename = jLabel6.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
-				String key = jTextField1.getText();
+		String key = jTextField1.getText();
                 pvd4 = new PVD4(filename);
-				pvd4.process("extract",key,"");
+		pvd4.process("extract",key,"");
                 jTextArea1.setText(pvd4.getPlainTeks());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
-		}else if (buttonGroup2.isSelected(jRadioButton6.getModel())){
-            try {
-                if (pvd9.initProcess()>0){
-                    String filename = jLabel6.getText();
-                    filename = filename.replace("\\", "\\\\").substring(14);
-                    System.out.println(filename);
-//                    String key = jTextField1.getText();
-                    pvd9 = new PVD9(filename,"");
-                    jTextArea1.setText(pvd9.extractMsg());
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }else if (buttonGroup2.isSelected(jRadioButton6.getModel())){
+                String temp = pvd9.extractMsg();
+                System.out.println(temp);
+                jTextArea1.setText(temp);
+//            }
         } else{
             try {
                 // TODO add your handling code here:
