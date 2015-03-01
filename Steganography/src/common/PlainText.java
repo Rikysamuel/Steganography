@@ -33,6 +33,8 @@ public class PlainText {
         vc.setKey(key);
         vc.genKey();
         temp = vc.processExtended();
+        //cek
+        System.out.println("cek hasil vigenere"+temp);
         streamPT = temp.getBytes(Charset.forName("UTF-8"));
     }
     
