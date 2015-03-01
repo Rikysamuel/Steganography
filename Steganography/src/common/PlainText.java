@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import vigenerecipher.VigenereCipher;
 import vigenerecipher.VigenereH;
-import vigenerecipher.Vigenere;
+//import vigenerecipher.Vigenere;
 
 
 /**
@@ -50,8 +50,8 @@ public class PlainText {
 		System.out.println(cipher);
 		vc.setKunci(key.toUpperCase());
 		System.out.println(key);
-		vc.genKey();
-		plaintext = vc.processDecExtended();
+//		vc.genKey();
+//		plaintext = vc.processDecExtended();
 		System.out.println(plaintext);
 		return plaintext;
 	}

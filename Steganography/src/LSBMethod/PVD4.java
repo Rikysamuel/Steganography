@@ -67,8 +67,9 @@ public class PVD4 {
 		System.out.println(temp);
 		temp = temp.substring(0,temp.length()-3);
 		System.out.println(temp);
-		System.out.println("tes  "+pt.getPlaintextAfterDecrypt(temp));
-		return pt.getPlaintextAfterDecrypt(temp);
+//		System.out.println("tes  "+pt.getPlaintextAfterDecrypt(temp));
+//		temp = pt.getPlaintextAfterDecrypt(temp);
+		return temp;
 	}
     
 	public void setRandomPosition(String key){
