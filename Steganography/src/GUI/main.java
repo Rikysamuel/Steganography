@@ -7,7 +7,6 @@
 package GUI;
 
 import LSBMethod.PVD4;
-import LSBMethod.PVD9;
 import common.Common;
 import java.io.IOException;
 import common.PlainText;
@@ -47,14 +46,14 @@ public class main {
 //		for(int i =0;i<=8;i++){
 //			System.out.println(com.randomPositionFromSeed(100, 9));
 //		}
-//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\cameraman (1).bmp");
-//		temp.process("hide","STEGANO","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
-//		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result5.bmp");
-
-		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result5.bmp");
-		temp.process("extract","STEGANO","");
-		System.out.println(temp.getPlainTeks());
 		
-//		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
+		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes3.bmp");
+		temp.process("hide","STEGANO","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result3.bmp");
+		System.out.println("PSNR="+temp.countPSNR());
+		
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result5.bmp");
+//		temp.process("extract","STEGANO","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+//		System.out.println(temp.getPlainTeks());
     }
 }

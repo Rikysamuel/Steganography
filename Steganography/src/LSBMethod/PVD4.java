@@ -62,7 +62,10 @@ public class PVD4 {
 	public String getPlainTeks(){
 		String temp = com.bitToText(plainteks);
 		System.out.println(temp);
-		return temp.substring(0,temp.length()-3);
+		temp = temp.substring(0,temp.length()-3);
+		System.out.println(temp);
+		System.out.println("tes  "+pt.getPlaintextAfterDecrypt(temp));
+		return pt.getPlaintextAfterDecrypt(temp);
 	}
     
 	public void setRandomPosition(String key){
@@ -160,13 +163,14 @@ public class PVD4 {
 		
 		initProcess();
 		if(process.equals("hide")){
-			pt = new PlainText(textfile);
+			pt = new PlainText(textfile,key);
 			pt.setStreamPT();
 			plainteks = pt.ptByte + com.textToBit("EOF");			
 
 			System.out.println(plainteks);
 			System.out.println(com.bitToText(plainteks));
 		} else /* extract */{
+			pt = new PlainText(textfile,key);
 			plainteks = "";
 		}
 	//	setRandomPosition(key);

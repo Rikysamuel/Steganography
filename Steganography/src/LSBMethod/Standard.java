@@ -25,15 +25,15 @@ public class Standard {
     public PlainText pt;
     
 
-    public Standard(String fimg, String fpt, String fstego) throws IOException {
+    public Standard(String fimg, String fpt, String fstego, String key) throws IOException {
         this.filenameImg = fimg;
         this.filenamePT = fpt;
         this.filenameSImg = fstego;
         //untuk mode penyisipan
-        if (filenameImg != "" && filenamePT != ""){
+        if (filenameImg != "" && filenamePT != "" && key != ""){
             this.img = new Common(filenameImg);
             img.writeToByte(filenameImg);
-            this.pt = new PlainText(filenamePT);
+            this.pt = new PlainText(filenamePT,key);
             pt.setStreamPT();
         } else {
             //untuk mode ekstraksi
@@ -48,8 +48,10 @@ public class Standard {
    
     public void stegonize () throws IOException{
 //        img.writeToByte(filenameImg);
-        int counter = this.img.stream.length;
+        int offset = 1078;
+        int counter = this.img.stream.length - offset;
         int counterPT = this.pt.streamPT.length;
+        
         byte temp;
         String ptemp="";
         if (counterPT < counter){
@@ -59,11 +61,11 @@ public class Standard {
             }
             //cek string of bit plainteks
             System.out.println(ptemp);
-            //masukkan bit plainteks ke byte gambar
-            for (int i = 400; i < ptemp.length()+400; i++){
+            //masukkan bit plainteks ke byte gambar; mulai dari byte ke 1078
+            for (int i = offset; i < ptemp.length()+offset; i++){
                 //versi: cek byte mula-mula dan byte setelah dimasuki bit pesan
                 System.out.println("origin: "+img.getBits(img.stream[i]));
-                int t = ptemp.charAt(i-400) - '0';
+                int t = ptemp.charAt(i-offset) - '0';
                 img.stream[i] = img.changeBit(img.stream[i], 1, t);
                 System.out.println("ubah: "+img.getBits(img.stream[i]));
             }

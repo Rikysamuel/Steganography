@@ -6,6 +6,7 @@
 package GUI;
 
 import LSBMethod.PVD9;
+import LSBMethod.PVD4;
 import LSBMethod.Standard;
 import java.awt.Image;
 import java.io.ByteArrayInputStream;
@@ -30,12 +31,13 @@ import vigenerecipher.VigenereCipher;
 public class Intfc extends javax.swing.JFrame {
 
     PVD9 pvd9;
+	PVD4 pvd4;
     
     /**
      * Creates new form Intfc
      */
     public Intfc() {
-        add(scrPane);
+        
 //        JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 //        setContentPane(pane);
         initComponents();
@@ -83,7 +85,6 @@ public class Intfc extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         panelForCover = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -92,6 +93,7 @@ public class Intfc extends javax.swing.JFrame {
         panelForStego = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabelStegoImg = new javax.swing.JLabel();
+        PSNRLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -105,6 +107,9 @@ public class Intfc extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Steganografi Citra Digital");
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1024, 600));
+        setResizable(false);
 
         jButton4.setText("Browse");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,7 +165,7 @@ public class Intfc extends javax.swing.JFrame {
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -222,7 +227,7 @@ public class Intfc extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(jButton7)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Ekstraksi", jPanel3);
@@ -349,34 +354,33 @@ public class Intfc extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton3)
-                                    .addComponent(jRadioButton1)
-                                    .addComponent(jRadioButton2)))
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
+                            .addComponent(jButton2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton6))))
+                            .addComponent(jLabel1))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jButton3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel2))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton3)
+                                .addComponent(jRadioButton1)
+                                .addComponent(jRadioButton2)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PSNRLabel))
+                    .addComponent(jButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -422,18 +426,16 @@ public class Intfc extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jLabel13))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelForStego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jButton6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(266, Short.MAX_VALUE))
+                            .addComponent(PSNRLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6))
+                    .addComponent(panelForStego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Penyisipan", jPanel1);
@@ -465,9 +467,9 @@ public class Intfc extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
+	
+	// get cover image path file
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
         String sb = "";
         String fullPath = "";
@@ -490,9 +492,9 @@ public class Intfc extends javax.swing.JFrame {
                     this.jLabel1.setText("Cover image : "+fullPath);
         }
     }//GEN-LAST:event_jButton2MouseClicked
-
+	
+	// get input file path
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
         String sb = "";
         String fullPath = "";
@@ -511,23 +513,36 @@ public class Intfc extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jPanel1MouseClicked
-
+	
+	// hide message to cover image
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(buttonGroup1.isSelected(jRadioButton3.getModel())){
+        if(buttonGroup1.isSelected(jRadioButton2.getModel())){ // PVD4
+			try {
+                String filename = jLabel1.getText(); //image
+                String infile = jLabel2.getText();	//plainteks
+				String key = jTextField1.getText();
+                filename = filename.replace("\\", "\\\\").substring(14);
+                infile = infile.replace("\\", "\\\\").substring(13);
+                pvd4 = new PVD4(filename);
+                pvd4.process("hide",key,infile);
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+		} else if(buttonGroup1.isSelected(jRadioButton3.getModel())){
             try {
                 String filename = jLabel1.getText();
                 String infile = jLabel2.getText();
+				String key = jTextField1.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
                 infile = infile.replace("\\", "\\\\").substring(13);
-                pvd9 = new PVD9(filename,infile);
+                pvd9 = new PVD9(filename,infile,key);
                 pvd9.hideMsg();
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else{
             try {
-            // TODO add your handling code here:
-                this.std = new Standard(fileImg, filePT, "");
+                this.std = new Standard(fileImg, filePT, "", jTextField1.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -537,15 +552,9 @@ public class Intfc extends javax.swing.JFrame {
                 std.stegonize();
                 //bagian ini hanya menampilkan stego image ke form, belum menyimpannya
                 stegoImg = std.img.stream;
-    //            String temp="";
-    //            for (int i = 0; i < 16; i++){
-    //                temp += std.img.getBits(std.img.stream[i]);
-    //            }
-    //            System.out.println(temp);
                 InputStream in = new ByteArrayInputStream(std.img.stream);
                 Image bImageFromConvert;
                 bImageFromConvert = ImageIO.read(in);
-    //            ImageIO.write(bImageFromConvert, "bmp", new File("D:\\[6]\\IF4020 Kripto\\Tubes 1\\testtt.bmp"));
                 System.out.println("TES 3");
                 bImageFromConvert = bImageFromConvert.getScaledInstance(333, 222, 1);
                 System.out.println("TES 4");
@@ -560,7 +569,8 @@ public class Intfc extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1MouseClicked
-
+	
+	// save stego image
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
         JFileChooser jf = new JFileChooser();
@@ -572,7 +582,13 @@ public class Intfc extends javax.swing.JFrame {
             File savedFile = jf.getSelectedFile();
             nf += savedFile.getAbsolutePath();
             nf += ".bmp";
-            if (buttonGroup1.isSelected(jRadioButton3.getModel())){
+            if (buttonGroup1.isSelected(jRadioButton2.getModel())){
+                try {
+                    pvd4.Flush(nf);
+                } catch (IOException ex) {
+                    Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (buttonGroup1.isSelected(jRadioButton3.getModel())){
                 try {
                     pvd9.Flush(nf);
                 } catch (IOException ex) {
@@ -594,7 +610,6 @@ public class Intfc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
         //hanya menampilkan stego image ke window, belum membuat objek Standard
         JFileChooser fc = new JFileChooser();
         String sb = "";
@@ -618,14 +633,27 @@ public class Intfc extends javax.swing.JFrame {
                     this.jLabel6.setText("Stego image : "+fullPath);
         }
     }//GEN-LAST:event_jButton4MouseClicked
-
+	
+	// Extract message from stego image
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        if (buttonGroup2.isSelected(jRadioButton6.getModel())){
+        if(buttonGroup2.isSelected(jRadioButton5.getModel())){ // PV4
+			try {
+                String filename = jLabel6.getText();
+                filename = filename.replace("\\", "\\\\").substring(14);
+				String key = jTextField1.getText();
+                pvd4 = new PVD4(filename);
+				pvd4.process("extract",key,"");
+                jTextArea1.setText(pvd4.getPlainTeks());
+            } catch (IOException ex) {
+                Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+		}else if (buttonGroup2.isSelected(jRadioButton6.getModel())){
             try {
                 String filename = jLabel6.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
                 System.out.println(filename);
-                pvd9 = new PVD9(filename,"");
+				String key = jTextField1.getText();
+                pvd9 = new PVD9(filename,"",key);
                 jTextArea1.setText(pvd9.extractMsg());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
@@ -636,7 +664,7 @@ public class Intfc extends javax.swing.JFrame {
                 String ss = "";
     //            Common stego = new Common(fileStg);
     //            stego.writeToByte(fileStg);
-                std = new Standard("","",fileStg);
+                std = new Standard("","",fileStg,"");
                 for(int i=400; i<416; i++){
                         ss += std.stimg.getBits(std.stimg.stream[i]).charAt(7);
     //                    System.out.println(stego.getBits(stego.stream[i]));
@@ -728,6 +756,7 @@ public class Intfc extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel PSNRLabel;
     public javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
@@ -766,7 +795,6 @@ public class Intfc extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panelForCover;
     private javax.swing.JPanel panelForStego;
