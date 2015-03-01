@@ -32,6 +32,7 @@ public class PVD4 {
 	PlainText pt;
 	List<Integer> listPosition;
     
+	// constructor
     public PVD4(String picturename) throws IOException{
 		System.out.println("--CONSTRUCT PVD4--");
 		
@@ -55,10 +56,12 @@ public class PVD4 {
 		kHigher = 3;
     }
 	
+	// save the image to file
 	public void Flush(String outfile) throws IOException{
         com.flush(outfile);
     }
 	
+	// get the plaintext
 	public String getPlainTeks(){
 		String temp = com.bitToText(plainteks);
 		System.out.println(temp);
