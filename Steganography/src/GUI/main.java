@@ -6,15 +6,9 @@
 
 package GUI;
 
-import LSBMethod.PVD4;
 import LSBMethod.PVD9;
 import common.Common;
 import java.io.IOException;
-import common.PlainText;
-import java.io.FileNotFoundException;
-import static java.lang.Math.pow;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -26,21 +20,15 @@ public class main {
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-//        PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\plaintext.txt");
-		Common com = new Common("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
-//		plainteks.setStreamPT();
-//		System.out.println(plainteks.ptByte);
-		
-		
-//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes4.bmp");
-//		temp.process("hide","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
-//		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");
-
-//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result4.bmp");
-//		temp.process("extract","");
-//		System.out.println(temp.getPlainTeks());
-		
-//		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
+    public static void main(String[] args) throws IOException{
+        PVD9 p = new PVD9("D:\\tes\\PeppersRGB.bmp","D:\\tes\\infile.txt");
+//        Common c = new Common("D:\\tes\\input.bmp");
+//        p.initProcess(25);
+        p.hideMsg();
+        p.Flush("D:\\tes\\result.bmp");
+        
+        PVD9 p2 = new PVD9("D:\\tes\\result.bmp","");
+        System.out.println(p2.extractMessageFromBlock(0, 0));
+//        System.out.println(p2.extractMsg());
     }
 }
