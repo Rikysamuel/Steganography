@@ -160,7 +160,6 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -205,15 +204,7 @@
                               </Group>
                               <Component id="panelForStego" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="285" max="32767" attributes="0"/>
-<!-- =======
-                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-<!-- <<<<<<< HEAD -->
-                          <!-- <EmptySpace pref="73" max="32767" attributes="0"/> -->
-<!-- =======
-                          <EmptySpace pref="109" max="32767" attributes="0"/>
->>>>>>> 34363989dd4bb394d59d371e2f57d4114956cbdd -->
-<!-- >>>>>>> 8ccb2913625bda5a194e96d82aa6598fb38cec97 --> -->
+                          <EmptySpace pref="293" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -569,7 +560,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="165" max="32767" attributes="0"/>
+                              <EmptySpace pref="173" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
