@@ -15,6 +15,7 @@ import static java.lang.Math.log10;
 import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
+import vigenerecipher.VigenereCipher;
 
 /**
  *
@@ -53,7 +54,7 @@ public class PVD9 {
         com.imageToPix();
     }
     
-    public int initProcess(int seed){
+    public int initProcess(){
         int height = com.height;
         int width = com.width;
         if (height%3!=0){
@@ -62,12 +63,11 @@ public class PVD9 {
         if (width%3!=0){
             width = (width/3)*3;
         }
-//        random = com.randomSeed(seed, height*width);
         height = height/3;
         width = width/3;
         maxData = width * height * 3 * 9 * 2; // 
-        System.out.println(maxData);
-        System.out.println(text.length());
+//        System.out.println(maxData);
+//        System.out.println(text.length());
         if (maxData > text.length()){
             return 1;
         }
@@ -365,12 +365,10 @@ public class PVD9 {
         if (width%3!=0){
             width = (width/3)*3;
         }
-        System.out.println(temp);
         int i=0; int j=3;
         while(i<height-1){
             if(j<width-1){
                 temp = temp + com.bitToText(bitDiv8(extractMessageFromBlock(i,j)));
-                System.out.println(temp);
                 pointerres = 0;
                 if (temp.contains("EOF")){
                     break;
@@ -427,6 +425,26 @@ public class PVD9 {
         double rms = pow(diff/(9*com.height*com.width),0.5);
         result = 20 * log10(256/rms);
         return result;
+    }
+    
+    public String encrypt(String text, String key){
+        VigenereCipher vc = new VigenereCipher();
+        vc.setStr(text);
+        vc.setKey(key);
+        vc.genKey();
+//        vc.encSpace5();
+        vc.processExtended();
+        return vc.getEncStr();
+    }
+    
+    public String decrypt(String text, String key){
+        VigenereCipher vc = new VigenereCipher();
+        vc.setStr(text);
+        vc.setKey(key);
+        vc.genKey();
+        vc.processDecExtended();
+//        vc.encSpace5();
+        return vc.getEncStr();
     }
     
     public void tes(int iOffset, int jOffset){
