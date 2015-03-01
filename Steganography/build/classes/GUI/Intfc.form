@@ -204,7 +204,8 @@
                               </Group>
                               <Component id="panelForStego" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="302" max="32767" attributes="0"/>
+                          <EmptySpace pref="301" max="32767" attributes="0"/>
+
                       </Group>
                   </Group>
                 </DimensionLayout>

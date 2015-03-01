@@ -6,7 +6,7 @@
 
 package GUI;
 
-import LSBMethod.PVD9;
+import LSBMethod.PVD4;
 import common.Common;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,16 +23,18 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        PVD9 p = new PVD9("D:\\tes\\boat.bmp","D:\\tes\\infile.txt");
-//        Common com = new Common("D:\\tes\\result.bmp");
-//        if (p.initProcess()>0){
-//            System.out.println(p.initProcess());
-//            p.hideMsg();
-//            p.Flush("D:\\tes\\result.bmp");
-//            System.out.println(p.extractMsg());
-
-        String temp = p.encrypt("nama saya rikysamuel", "riky");
-        System.out.println(temp);
-        System.out.println(p.decrypt(temp, "riky"));
+//		Common com = new Common("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
+//		plainteks.setStreamPT();
+//		System.out.println(plainteks.ptByte);
+		
+		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\lenna\\boat.bmp");
+		temp.process("hide","Kripto","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+		temp.Flush("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\resultBoat.bmp");
+		System.out.println("PSNR="+temp.countPSNR());
+		System.out.println("max data="+temp.maxData);
+		
+//		PVD4 temp = new PVD4("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\result5.bmp");
+//		temp.process("extract","STEGANO","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\ConquerTheWorld.txt");
+//		System.out.println(temp.getPlainTeks());
     }
 }

@@ -320,7 +320,11 @@ public class Intfc extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6))
                     .addComponent(panelForStego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+                .addContainerGap(301, Short.MAX_VALUE))
+=======
                 .addContainerGap(302, Short.MAX_VALUE))
+>>>>>>> 6a7a64295050f3abce0712e6354a48dbf7093500
         );
 
         jTabbedPane1.addTab("Penyisipan", jPanel1);
@@ -542,6 +546,7 @@ public class Intfc extends javax.swing.JFrame {
                 infile = infile.replace("\\", "\\\\").substring(13);
                 pvd4 = new PVD4(filename);
                 pvd4.process("hide",key,infile);
+				PSNRLabel.setText(String.valueOf(pvd4.countPSNR()));
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -662,9 +667,9 @@ public class Intfc extends javax.swing.JFrame {
             try {
                 String filename = jLabel6.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
-		String key = jTextField1.getText();
+				String key = jTextField1.getText();
                 pvd4 = new PVD4(filename);
-		pvd4.process("extract",key,"");
+				pvd4.process("extract",key,"");
                 jTextArea1.setText(pvd4.getPlainTeks());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
@@ -673,7 +678,6 @@ public class Intfc extends javax.swing.JFrame {
                 String temp = pvd9.extractMsg();
                 System.out.println(temp);
                 jTextArea1.setText(temp);
-//            }
         } else{
             try {
                 // TODO add your handling code here:
