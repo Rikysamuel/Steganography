@@ -29,6 +29,7 @@ public class Standard {
     public PlainText pt;
     public double psnrStd;
     public byte[] unchanged;
+    public byte[] changed;
     
 
     public Standard(String fimg, String fpt, String fstego, String key) throws IOException {
@@ -76,6 +77,7 @@ public class Standard {
                 img.stream[i] = img.changeBit(img.stream[i], 1, t);
                 System.out.println("ubah: "+img.getBits(img.stream[i]));
             }
+            changed = img.stream;
         }
 //        this.img.convertToImage(filenameImg);
     }
@@ -114,11 +116,14 @@ public class Standard {
         double rms;
         for(int i = 0 ; i < MN ;i++){
             String unc = img.getBits(unchanged[i+offset]);
-            String org = img.getBits(img.stream[i+offset]);
+//            System.out.println(unc);
+            String org = img.getBits(changed[i+offset]);
+//            System.out.println(org);
             temp += pow(((img.bitToInteger(unc))-img.bitToInteger(org)),2);
 //            System.out.println(temp);
         }
-//        System.out.format("%.3f", temp);
+        System.out.println(img.getBits(unchanged[1079]));
+        System.out.println(img.getBits(changed[1079]));
         rms = sqrt((temp/M)/N);
         System.out.println("rms "+rms);
         this.psnrStd = (20 * log10(256/rms));

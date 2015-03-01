@@ -36,6 +36,7 @@ public class PlainText {
 //	public String getPlaintextAfterDecrypt(String cipher){
 //		System.out.println("--DECRYPT IN PLAINTEXT CLASS--");
 //		String plaintext="";
+
 //		vc.setStr(cipher.toUpperCase());
 //		System.out.println(cipher);
 //		vc.setKey(key.toUpperCase());

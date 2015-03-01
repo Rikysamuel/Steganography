@@ -550,7 +550,7 @@ public class Intfc extends javax.swing.JFrame {
             }
         } else{
             try {
-                this.std = new Standard(fileImg, filePT, "", jTextField1.getText());
+                this.std = new Standard(fileImg, filePT, "", this.jTextField1.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
