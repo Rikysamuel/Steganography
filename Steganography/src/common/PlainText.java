@@ -7,9 +7,11 @@ package common;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import vigenerecipher.VigenereCipher;
 
 /**
  *
@@ -17,13 +19,21 @@ import java.nio.file.Paths;
  */
 public class PlainText {
     private String pt;
+    public VigenereCipher vc;
     public byte[] streamPT;
     public String ptByte = "";
+    public String key;
     
-    public PlainText (String filename) throws IOException{
+    public PlainText (String filename, String key) throws IOException{
         Path filein = Paths.get(filename);
-        streamPT = Files.readAllBytes(filein); 
-//        this.setStreamPT();
+        this.key = key;
+        vc = new VigenereCipher();
+        String temp = vc.FileReader(filename);
+        vc.setStr(temp);
+        vc.setKey(key);
+        vc.genKey();
+        temp = vc.processExtended();
+        streamPT = temp.getBytes(Charset.forName("UTF-8"));
     }
     
     public void setPt(String s){
