@@ -204,7 +204,7 @@
                               </Group>
                               <Component id="panelForStego" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="293" max="32767" attributes="0"/>
+                          <EmptySpace pref="301" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -560,7 +560,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="173" max="32767" attributes="0"/>
+                              <EmptySpace pref="181" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

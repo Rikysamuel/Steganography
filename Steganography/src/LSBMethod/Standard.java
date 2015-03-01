@@ -41,6 +41,7 @@ public class Standard {
             img.writeToByte(filenameImg);
             this.pt = new PlainText(filenamePT);
             pt.setStreamPT();
+            pt.ptByte += "010001010100111101000110"; //tambah EOF
         } else {
             //untuk mode ekstraksi
             this.stimg = new Common(filenameSImg);
@@ -67,6 +68,7 @@ public class Standard {
             //cek string of bit plainteks
             System.out.println("string of bit plainteks "+ptemp);
             //masukkan bit plainteks ke byte gambar; mulai dari byte ke 1078
+            System.out.println(ptemp.length());
             for (int i = offset; i < ptemp.length()+offset; i++){
                 //versi: cek byte mula-mula dan byte setelah dimasuki bit pesan
                 System.out.println("origin: "+img.getBits(img.stream[i]));
@@ -89,18 +91,25 @@ public class Standard {
     public void extract() throws IOException{
         int offset = 1078;
         int count = stimg.stream.length - offset;
-        String ext = "";
-        for (int i = offset ; i < count+offset; i++){
-            ext += stimg.getBits(stimg.stream[i]).charAt(7);
-        }
-        //cek string of byte hasil ekstraksi
-        System.out.println(ext);
-        System.out.println(stimg.bitToText(ext));
-//        VigenereH cip = new VigenereH();
-//        cip.setCipher(ext);
-//        cip.setKunci(key);
-//        cip.decryptExtended();
-//        System.out.println(cip.getPesan());
+        int i = offset;
+        String ext;
+        String result = "";
+        do{
+            ext = "";
+            for (int j = i; j < i+24; j++){
+                ext += stimg.getBits(stimg.stream[j]).charAt(7);
+                System.out.println(ext);
+            }
+            if (stimg.bitToText(ext)!="EOF"){
+                result += stimg.bitToText(ext);
+                System.out.println(result);
+            }
+            i += 24;
+            
+        } while (i < count+offset && stimg.bitToText(ext)!="EOF");
+       
+        
+        System.out.println(result);
     }
     
     public void countPSNR(){
