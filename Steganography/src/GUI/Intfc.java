@@ -540,8 +540,11 @@ public class Intfc extends javax.swing.JFrame {
 				String key = jTextField1.getText();
                 filename = filename.replace("\\", "\\\\").substring(14);
                 infile = infile.replace("\\", "\\\\").substring(13);
-                pvd9 = new PVD9(filename,infile,key);
-                pvd9.hideMsg();
+                pvd9 = new PVD9(filename,infile);
+                if (pvd9.initProcess()>0){
+                    pvd9.hideMsg();
+                    PSNRLabel.setText(String.valueOf(pvd9.countPSNR()));
+                }
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -595,7 +598,9 @@ public class Intfc extends javax.swing.JFrame {
                 }
             } else if (buttonGroup1.isSelected(jRadioButton3.getModel())){
                 try {
-                    pvd9.Flush(nf);
+                    if(pvd9.initProcess()>0){
+                        pvd9.Flush(nf);
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -654,12 +659,14 @@ public class Intfc extends javax.swing.JFrame {
             }
 		}else if (buttonGroup2.isSelected(jRadioButton6.getModel())){
             try {
-                String filename = jLabel6.getText();
-                filename = filename.replace("\\", "\\\\").substring(14);
-                System.out.println(filename);
-				String key = jTextField1.getText();
-                pvd9 = new PVD9(filename,"",key);
-                jTextArea1.setText(pvd9.extractMsg());
+                if (pvd9.initProcess()>0){
+                    String filename = jLabel6.getText();
+                    filename = filename.replace("\\", "\\\\").substring(14);
+                    System.out.println(filename);
+//                    String key = jTextField1.getText();
+                    pvd9 = new PVD9(filename,"");
+                    jTextArea1.setText(pvd9.extractMsg());
+                }
             } catch (IOException ex) {
                 Logger.getLogger(Intfc.class.getName()).log(Level.SEVERE, null, ex);
             }

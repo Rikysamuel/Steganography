@@ -28,12 +28,16 @@ public class main {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        PVD9 p = new PVD9("D:\\tes\\lenna.bmp","D:\\tes\\infile.txt");
-        p.initProcess(0);
-        p.hideMsg();
-        p.Flush("D:\\tes\\outfile.bmp");
-        System.out.println(p.countPSNR());
-        System.out.println(p.extractMsg());
+        PVD9 p = new PVD9("D:\\tes\\boat.bmp","D:\\tes\\infile.txt");
+        int temp = p.initProcess();
+//        temp = -1;
+        if (p.initProcess()>0){
+            System.out.println(p.initProcess());
+            p.hideMsg();
+            p.Flush("D:\\tes\\outfile.bmp");
+            System.out.println(p.countPSNR());
+            System.out.println(p.extractMsg());
+        }
 //        PlainText plainteks = new PlainText("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\plaintext.txt");
 //		Common com = new Common("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\tes.bmp");
 //		plainteks.setStreamPT();

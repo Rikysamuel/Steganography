@@ -53,7 +53,7 @@ public class PVD9 {
         com.imageToPix();
     }
     
-    public int initProcess(int seed){
+    public int initProcess(){
         int height = com.height;
         int width = com.width;
         if (height%3!=0){
@@ -62,12 +62,11 @@ public class PVD9 {
         if (width%3!=0){
             width = (width/3)*3;
         }
-//        random = com.randomSeed(seed, height*width);
         height = height/3;
         width = width/3;
         maxData = width * height * 3 * 9 * 2; // 
-        System.out.println(maxData);
-        System.out.println(text.length());
+//        System.out.println(maxData);
+//        System.out.println(text.length());
         if (maxData > text.length()){
             return 1;
         }
@@ -365,12 +364,10 @@ public class PVD9 {
         if (width%3!=0){
             width = (width/3)*3;
         }
-        System.out.println(temp);
         int i=0; int j=3;
         while(i<height-1){
             if(j<width-1){
                 temp = temp + com.bitToText(bitDiv8(extractMessageFromBlock(i,j)));
-                System.out.println(temp);
                 pointerres = 0;
                 if (temp.contains("EOF")){
                     break;
