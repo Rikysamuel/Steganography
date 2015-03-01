@@ -9,14 +9,12 @@ package GUI;
 import LSBMethod.PVD4;
 import LSBMethod.PVD9;
 import common.Common;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import common.PlainText;
+import java.io.FileNotFoundException;
 import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 
 /**
  *
@@ -44,8 +42,5 @@ public class main {
 //		System.out.println(temp.getPlainTeks());
 		
 //		PVD9 p = new PVD9("D:\\tes\\imgtes.jpg");
-//        p.hideMsg();
-//        p.Flush("D:\\tes\\result.jpg");
-		
     }
 }
