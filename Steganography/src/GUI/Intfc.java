@@ -320,11 +320,7 @@ public class Intfc extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6))
                     .addComponent(panelForStego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
                 .addContainerGap(301, Short.MAX_VALUE))
-=======
-                .addContainerGap(302, Short.MAX_VALUE))
->>>>>>> 6a7a64295050f3abce0712e6354a48dbf7093500
         );
 
         jTabbedPane1.addTab("Penyisipan", jPanel1);
